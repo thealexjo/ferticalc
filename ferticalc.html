@@ -1,0 +1,961 @@
+<html>
+ <!DOCTYPE html>
+<html lang="en-US">
+<meta charset="utf-8">
+
+<head>
+	<title>Bezpiatov Calc 1.0</title>
+	<style type="text/css">
+		/* --- TABLE --- */
+		.divTable{
+			display: table;
+			width: 100%;
+		}
+		.divTableRow {
+			display: table-row;
+		}
+		.divTableHeading {
+			background-color: #EEE;
+			display: table-header-group;
+		}
+		.divTableCell, .divTableHead {
+			border-left: 1px solid #999999;
+			display: table-cell;
+			padding: 3px 10px;
+			width: 45px;
+			overflow: hidden;
+			word-wrap: unset;
+			vertical-align: middle;
+			text-align: center;
+		}
+		.divTableHeading {
+			background-color: #EEE;
+			display: table-header-group;
+			font-weight: bold;
+		}
+		.divTableFoot {
+			background-color: #EEE;
+			display: table-footer-group;
+			font-weight: bold;
+		}
+		.divTableBody {
+			display: table-row-group;
+		}
+
+		/* --- MAIN --- */
+		h2 {
+			font-family: Arial;
+			font-size: 16pt;
+			margin: 0 16px;
+			padding-bottom: 10px;
+		}
+		body {
+			background-color: #EFEFEF;
+			font-family: Verdana;
+			font-size: 16pt;
+		}
+
+		#main {
+			background-color: #FFF;
+			width: 1600px;
+			margin: 0 auto;
+			box-shadow: 0 0 1px rgba(0,0,0,0.5);
+			padding: 10px 5px;
+		}
+
+		.first {
+			border-left: 0 !important;
+			text-align: right;
+		}
+
+		.macro {
+			background-color: #f8f8f8;
+		}
+
+		.subproduct {
+			color: #888;
+		}
+
+		.unit { font-size: 11px; }
+
+		.divTableCell>input {
+			width: 100%;
+			text-align: center;
+			font-weight: bold;
+			height: 30px;
+			font-size: 14pt;
+			color: #444;
+			vertical-align: middle;
+		}
+
+		.point { width: 45px !important; }
+
+		.separ>.divTableCell {
+			border-top: 1px solid #999999 !important;
+		}
+		.fertitle {
+			font-size: 12pt;
+		}
+
+		.line {
+			margin: 0 auto;
+			color: #000;
+			width: 35px;
+			font-size: 11px;
+			height: 18px;
+			background-color: #a00;
+		}
+		.left50 {
+			display: inline-block;
+			width: 49%;
+			float: left;
+			height: 18px;
+			font-size: 1px;
+		}
+		.centerline {
+			width: 0;
+			border-left: 1px solid black;
+		}
+		.checkboxer {
+			display: block;
+			height: 30px;
+			text-align: center;
+			width: 30px;
+			float: left;
+		}
+		.whatsmyname {
+			display: block;
+			height: 30px;
+			text-align: center;
+			width: 100px;
+			float: right;
+			font-size: 12pt;
+		}
+		.spacer { height: 1px; background-color: #efefef; width: 100%; display: block; margin: 15px 0; }
+		.delete { width: 100px !important; }
+		span { color: #aaa; }
+		input.chosen-amount { width: 70px; }
+		.chosen-delete { width: 160px; }
+		.chosen-table { width: 1000px !important; }
+		.chosen-title { width: auto !important; text-align: left; }
+		.chosen-amounter { width: 210px; }
+
+		/** --- CATALOG --- **/
+		.catalog-item {
+			display: block;
+			width: 200px;
+			border: 1px solid #efefef;
+			text-align: center;
+			padding: 10px 10px;
+			margin: 3px 3px;
+			float: left;
+			border-radius: 3px;
+			height: 250px;
+		}
+		.catalog { position: relative; font-size: 10pt;}
+		img { width: 70px;}
+		small { font-size: 10pt; color: #888; }
+	</style>
+</head>
+<body>
+<div id="main">
+	<h2>Профиль</h2>
+	<div id="table">
+		<div class="divTable">
+			<div class="divTableBody" id="main_table">
+				<div class="divTableRow">
+					<div class="divTableCell first">&nbsp;</div>
+					<div class="divTableCell subproduct">NO<sub>3</sub></div>
+					<div class="divTableCell subproduct">NH<sub>4</sub></div>
+					<div class="divTableCell macro">N</div>
+					<div class="divTableCell macro">P</div>
+					<div class="divTableCell macro">K</div>
+					<div class="divTableCell macro">Ca</div>
+					<div class="divTableCell macro">Mg</div>
+					<div class="divTableCell macro">S</div>
+					<div class="divTableCell micro">Fe</div>
+					<div class="divTableCell micro">B</div>
+					<div class="divTableCell micro">Zn</div>
+					<div class="divTableCell micro">Cu</div>
+					<div class="divTableCell micro">Mn</div>
+					<div class="divTableCell micro">Mo</div>
+					<div class="divTableCell micro">Cl</div>
+				</div>
+<!--				<div class="divTableRow">-->
+<!--					<div class="divTableCell first unit">на литр</div>-->
+<!--					<div class="divTableCell subproduct unit">mmol</div>-->
+<!--					<div class="divTableCell subproduct unit">mmol</div>-->
+<!--					<div class="divTableCell macro unit">mmol</div>-->
+<!--					<div class="divTableCell macro unit">mmol</div>-->
+<!--					<div class="divTableCell macro unit">mmol</div>-->
+<!--					<div class="divTableCell macro unit">mmol</div>-->
+<!--					<div class="divTableCell macro unit">mmol</div>-->
+<!--					<div class="divTableCell macro unit">mmol</div>-->
+<!--					<div class="divTableCell micro unit">μmol</div>-->
+<!--					<div class="divTableCell micro unit">μmol</div>-->
+<!--					<div class="divTableCell micro unit">μmol</div>-->
+<!--					<div class="divTableCell micro unit">μmol</div>-->
+<!--					<div class="divTableCell micro unit">μmol</div>-->
+<!--					<div class="divTableCell micro unit">μmol</div>-->
+<!--					<div class="divTableCell micro unit">μmol</div>-->
+<!--				</div>-->
+				<div class="divTableRow">
+					<div class="divTableCell first unit">на литр</div>
+					<div class="divTableCell subproduct unit">mg</div>
+					<div class="divTableCell subproduct unit">mg</div>
+					<div class="divTableCell macro unit">mg</div>
+					<div class="divTableCell macro unit">mg</div>
+					<div class="divTableCell macro unit">mg</div>
+					<div class="divTableCell macro unit">mg</div>
+					<div class="divTableCell macro unit">mg</div>
+					<div class="divTableCell macro unit">mg</div>
+					<div class="divTableCell micro unit">mg</div>
+					<div class="divTableCell micro unit">mg</div>
+					<div class="divTableCell micro unit">mg</div>
+					<div class="divTableCell micro unit">mg</div>
+					<div class="divTableCell micro unit">mg</div>
+					<div class="divTableCell micro unit">mg</div>
+					<div class="divTableCell micro unit">mg</div>
+				</div>
+				<div class="divTableRow" id="table_row__expected" style="visibility: hidden">
+					<div class="divTableCell first">Целевой</div>
+				</div>
+				<div class="divTableRow" id="table_row__current">
+					<div class="divTableCell first">Текущий</div>
+					<div class="divTableCell subproduct">0</div>
+					<div class="divTableCell subproduct">0</div>
+					<div class="divTableCell macro">0</div>
+					<div class="divTableCell macro">0</div>
+					<div class="divTableCell macro">0</div>
+					<div class="divTableCell macro">0</div>
+					<div class="divTableCell macro">0</div>
+					<div class="divTableCell macro">0</div>
+					<div class="divTableCell micro">0</div>
+					<div class="divTableCell micro">0</div>
+					<div class="divTableCell micro">0</div>
+					<div class="divTableCell micro">0</div>
+					<div class="divTableCell micro">0</div>
+					<div class="divTableCell micro">0</div>
+					<div class="divTableCell micro">0</div>
+				</div>
+				<div class="divTableRow separator" id="table_row__bars" style="visibility: hidden">
+					<div class="divTableCell first">&nbsp;</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="spacer">&nbsp;</div>
+
+
+		<h2>Выбранные</h2>
+		<div id="table_row__ec"></div>
+		<div class="divTable chosen-table">
+			<div class="divTableBody" id="cart_table">
+			</div>
+		</div>
+
+		<div class="spacer">&nbsp;</div>
+
+
+		<h2>Каталог</h2>
+		<div class="catalog">
+			<div id="catalog"></div>
+			<div style="clear: both;"></div>
+		</div>
+	</div>
+</div>
+
+
+<!--<div style="position: absolute; width: 100%; height: 100%; background-color: #fff; opacity: 0.85; left: 0; top: 0">-->
+<!--	&nbsp;-->
+<!--</div>-->
+
+<!--<div style="position: absolute; width: 600px; height: 500px; background-color: #fff; border-radius: 6px; box-shadow: 0 0 10px rgba(0,0,0,0.5); left: 30%; top: 30%; padding: 15px 10px;">-->
+<!--	<h2>Импорт</h2>-->
+<!--	Привет-->
+<!--</div>-->
+
+<script type="text/javascript">
+	var default__cart_mgl = 0;
+	var default__expected_placeholder = 0;
+
+	var const__items_is_inited = false;
+	var const__molar = false;
+
+
+	var cart = {};
+	var calculations = {};
+	var conversions = {
+		"P2O5": { "P": 0.437 },
+		"K2O": { "K": 0.83 },
+		"CaO": { "Ca": 0.715 },
+		"SO3": { "S": 0.4 },
+		"SO4": { "S": 0.32 },
+		"MgO": { "Mg": 0.603 },
+	};
+	var units = {
+		"mmol": { "name": "mmol", "text": "mmol", "divider": 1 },
+		"umol": { "name": "umol", "text": "μmol", "divider": 0.001 },
+	};
+	var elements = {
+		"H" : {
+			"name": "H",
+			"unit": "mmol",
+			"atomic": 1,
+			"is_hidden": true,
+			"class": "subproduct"
+		},
+		"NO3": {
+			"name": "NO3",
+			"unit": "mmol",
+			"atomic": 14,
+			"ionic": -1,
+			"class": "subproduct"
+		},
+		"NH4": {
+			"name": "NH4",
+			"unit": "mmol",
+			"atomic": 14,
+			"ionic": 1,
+			"class": "subproduct"
+		},
+		"N": {
+			"name": "N",
+			"unit": "mmol",
+			"atomic": 14,
+			"class": "macro"
+		},
+		"P": {
+			"name": "P",
+			"unit": "mmol",
+			"atomic": 30.974,
+			"ionic": -3,
+			"class": "macro"
+		},
+		"K": {
+			"name": "K",
+			"unit": "mmol",
+			"atomic": 39.1,
+			"ionic": 1,
+			"class": "macro"
+		},
+		"Ca": {
+			"name": "Ca",
+			"unit": "mmol",
+			"atomic": 40.078,
+			"ionic": 2,
+			"class": "macro"
+		},
+		"Mg": {
+			"name": "Mg",
+			"unit": "mmol",
+			"atomic": 24.305,
+			"class": "macro"
+		},
+		"S": {
+			"name": "S",
+			"unit": "mmol",
+			"atomic": 32,
+			"ionic": -2,
+			"class": "macro"
+		},
+		"Fe": {
+			"name": "Fe",
+			"unit": "umol",
+			"atomic": 56,
+			"class": "micro"
+		},
+		"B": {
+			"name": "B",
+			"unit": "umol",
+			"atomic": 10.811,
+			"class": "micro"
+		},
+		"Zn": {
+			"name": "Zn",
+			"unit": "umol",
+			"atomic": 65.39,
+			"class": "micro"
+		},
+		"Cu": {
+			"name": "Cu",
+			"unit": "umol",
+			"atomic": 3.546,
+			"class": "micro"
+		},
+		"Mn": {
+			"name": "Mn",
+			"unit": "umol",
+			"atomic": 54.938,
+			"class": "micro"
+		},
+		"Mo": {
+			"name": "Mo",
+			"unit": "umol",
+			"atomic": 95.94,
+			"class": "micro"
+		},
+		"Cl": {
+			"name": "Cl",
+			"unit": "umol",
+			"atomic": 35.453,
+			"ionic": -1,
+			"class": "micro"
+		}
+	};
+	var fertilizers = {
+		"YaraLivaCalcinit": { "name": "YaraLiva Calcinit", "desc": "Кальций азотнокислый", "Ca": 19, "NO3": 14.4, "NH4": 1.1, "N": 15.5, "img": "https://yaraurl.net/dw49" },
+		"YaraLivaNitrabor": { "name": "YaraLiva Nitrabor", "desc": "", "Ca": 18.3, "NO3": 14.1, "NH4": 1.3, "B": 0.3, "img": "https://yaraurl.net/qio4" },
+		"YaraTeraKristaSop": { "name": "YaraTera KRISTA SOP", "desc": "", "K2O": 52, "S": 18, "img": "https://yaraurl.net/t08z" },
+		"YaraTeraKristaMgS": { "name": "YaraTera KRISTA MgS", "desc": "", "Mg": 9.6, "S": 13, "img": "https://yaraurl.net/m9r0" },
+		"YaraTeraKristaMKP": { "name": "YaraTera KRISTA MKP", "desc": "", "P2O5": 52, "K2O": 34, "img": "https://yaraurl.net/fdo" },
+		"YaraTeraKristaMAP": { "name": "YaraTera KRISTA MAP", "desc": "", "NH4": 12, "P2O5": 61, "img": "https://yaraurl.net/fm4f" },
+		"YaraTeraKristaMAG": { "name": "YaraTera KRISTA MAG", "desc": "", "NO3": 11, "Mg": 9, "img": "https://yaraurl.net/vifn" },
+		"YaraTeraKristaK": { "name": "YaraTera KRISTA K", "desc": "", "NO3": 13.5, "K2O": 45.5, "img": "https://yaraurl.net/gzog" },
+		"YaraTeraKristalonPlus": { "name": "YaraTera KRISTALON SPECIAL PLUS 20-20-20 +micro", "desc": "", "NO3": 3.1, "NH4": 2.3, "NH2": 14.6, "K2O": 20, "P2O5": 20, "S": 1.6, "B": 0.025, "Cu": 0.01, "Fe": 0.07, "Mn": 0.04, "Mo": 0.004, "Zn": 0.025, "img": "https://yaraurl.net/vsgg" },
+		"YaraTeraKristalonWhiteLabel": { "name": "YaraTera KRISTALON 15-5-30 WHITE LABEL", "desc": "", "NO3": 11.3, "NH4": 3.7, "ph01": 4.5, "P2O5": 5, "K2O": 30, "Mg": 1.9, "S": 2, "B": 0.025, "Cu": 0.01, "Fe": 0.07, "Mn": 0.04, "Zn": 0.025, "img": "https://yaraurl.net/bk71" },
+		"YaraTeraKristalonWhite": { "name": "YaraTera KRISTALON 13-5-26 WHITE", "desc": "", "ph01": 4.3, "NO3": 7, "NH4": 6, "P2O5": 5, "K2O": 26, "Mg": 1.9, "S": 9, "B": 0.025, "Cu": 0.01, "Fe": 0.07, "Mn": 0.04, "Mo": 0.004, "Zn": 0.025, "img": "https://yaraurl.net/ohc8" },
+		"YaraTeraKristalonBlueLabel": { "name": "YaraTera KRISTALON 19-6-20 BLUE LABEL", "desc": "", "NO3": 11.9, "NH4": 7.1, "P2O5": 6, "K2O": 20, "Mg": 1.9, "S": 3, "B": 0.025, "Cu": 0.01, "Fe": 0.07, "Mn": 0.04, "Mo": 0.004, "Zn": 0.025, "img": "https://yaraurl.net/7ext" },
+		"YaraTeraKristalonBlue": { "name": "YaraTera KRISTALON 17-6-18 BLUE", "desc": "", "ph01": 4.2, "NO3": 8, "NH4": 9, "P2O5": 6, "K2O": 18, "Mg": 1.2, "S": 8, "B": 0.025, "Cu": 0.01, "Fe": 0.07, "Mn": 0.04, "Mo": 0.004, "Zn": 0.025, "img": "https://yaraurl.net/rb2i" },
+		"YaraTeraKristaBrown": { "name": "YaraTera KRISTALON 3-11-38 BROWN", "desc": "", "ph01": 4.1, "NO3": 3, "P2O5": 11, "K2O": 38, "Mg": 2.4, "S": 11, "B": 0.025, "Cu": 0.01, "Fe": 0.07, "Mn": 0.04, "Mo": 0.004, "Zn": 0.025, "img": "https://yaraurl.net/qpnl" },
+		"YaraTeraKristaOrange": { "name": "YaraTera KRISTALON 6-12-36 ORANGE", "desc": "", "ph01": 4.2, "NO3": 4.5, "NH4": 1.5, "P2O5": 12, "K2O": 36, "Mg": 1.8, "S": 8, "B": 0.025, "Cu": 0.01, "Fe": 0.07, "Mn": 0.04, "Mo": 0.004, "Zn": 0.025, "img": "https://yaraurl.net/m243" },
+		"YaraTeraKristaRed": { "name": "YaraTera KRISTALON 12-12-36 RED", "desc": "", "ph01": 4.5, "NO3": 10.1, "K2O": 36, "NH4": 1.9, "P2O5": 12, "Mg": 0.6, "S": 1, "B": 0.025, "Cu": 0.01, "Fe": 0.07, "Mn": 0.04, "Mo": 0.004, "Zn": 0.025, "img": "https://yaraurl.net/nlvz" },
+		"YaraTeraKristaYellow": { "name": "YaraTera KRISTALON 13-40-13 YELLOW", "desc": "", "ph01": 4.3, "NO3": 4.4, "NH4": 8.6, "P2O5": 40, "K2O": 13, "B": 0.025, "Cu": 0.01, "Fe": 0.07, "Mn": 0.04, "Mo": 0.004, "Zn": 0.025, "img": "https://yaraurl.net/0mub" },
+		"YaraTeraKristaSpecial": { "name": "YaraTera KRISTALON SPECIAL 18-18-18 +3MgO +micro", "desc": "", "ph01": 4.3, "NO3": 4.9, "NH3": 3.3, "NH2": 9.8, "P2O5": 18, "K2O": 18, "Mg": 1.9, "S": 2, "B": 0.025, "Cu": 0.01, "Fe": 0.07, "Mn": 0.04, "Mo": 0.004, "Zn": 0.025, "img": "https://yaraurl.net/vsgg" },
+		"YaraTeraRexolinD12": { "name": "YaraTera REXOLIN D12", "desc": "", "Fe": 11.6, "img": "https://s.brandmaster.com/s/40WeJ2" },
+		"YaraTeraRexolinABC": { "name": "YaraTera REXOLIN ABC", "desc": "", "Mg": 1.85, "B": 0.5, "Cu": 1.5, "Fe": 4, "Mn": 4, "Mo": 0.1, "Zn": 1.5, "img": "https://s.brandmaster.com/s/qrZEx2" },
+		"YaraKristalonCucumber": { "name": "Yara KRISTALON 14-11-31 CUCUMBER", "desc": "", "NO3": 7, "NH2": 7, "P2O5": 11, "K2O": 31, "Mg": 1.5, "S": 2, "B": 0.02, "Cu": 0.01, "Fe": 0.15, "Mn": 0.1, "Mo": 0.002, "Zn": 0.01, "img": "https://yaraurl.net/oxe2" },
+		"YaraFerticareHydro": { "name": "Yara FERTICARE HYDRO 6-14-30", "desc": "", "NO3": 6, "P2O5": 13.7, "K2O": 30.1, "Mg": 2.6, "S": 3.7, "B": 0.03, "Cu": 0.02, "Fe": 0.2, "Mn": 0.14, "Mo": 0.004, "Zn": 0.02, "img": "https://yaraurl.net/229f" },
+		"YaraFerticareKombi": { "name": "Yara FERTICARE KOMBI 1 14-11-25", "desc": "", "NO3": 6, "NH4": 2.8, "NH2": 5.2, "P2O5": 11.5, "K2O": 25.3, "Mg": 1.4, "S": 5.6, "B": 0.02, "Cu": 0.01, "Fe": 0.1, "Mn": 0.1, "Mo": 0.002, "Zn": 0.01, "img": "https://yaraurl.net/229f" },
+
+		// "PartnerChelateZn15EDTA": { "name": "Brexil Zn (Брексил Цинк) Подробнее: https://organicplanet.in.ua/p1143625211-brexil-breksil-tsink.html", "desc": "", "Zn": 15, "img": "" },
+		"ValagroEDTA5SG": { "name": "Valagro EDTA 5 SG", "desc": "", "MgO": 5, "B": 0.5, "Cu": 1.5, "Fe": 4, "Mo": 0.1, "Mn": 4, "Zn": 1.5, "ph01": 4.5, "img": "https://images.ua.prom.st/2274611401_valagro-edta-5.jpg"}
+	};
+
+	/**
+	 * CART ACTIONS
+	 */
+	function addToCart(item) {
+		if (!isInCart(item)) {
+			cart[item] = getItem(item);
+			cart[item]['value'] = default__cart_mgl;
+			addCartRow(item, cart[item]);
+			recalculate();
+			addTableRow(item);
+			modifyTableRowTotals();
+		}
+	}
+
+	function switchCartItem(name, enabled) {
+		if (!enabled) {
+			cart[name]['__value'] = value;
+			cart[name]['value'] = 0;
+		} else {
+			cart[name]['value'] = cart[name]['__value'];
+			delete cart[name]['__value'];
+		}
+		recalculate();
+		modifyTableRowTotals();
+	}
+
+	function editCartItem(name) {
+		cart[name]['value'] = parseInt(getEl(getCartInputIdByName(name)).value);
+		recalculate();
+		modifyTableRow(name);
+		modifyTableRowTotals();
+	}
+
+	function isInCart(item) {
+		return cart[item] !== undefined;
+	}
+
+	function removeFromCart(item) {
+		if (isInCart(item)) {
+			delete cart[item];
+			removeCartRow(item);
+			recalculate();
+			removeTableRow(item);
+			modifyTableRowTotals();
+		}
+	}
+
+	function getCartItemsCount() {
+		return Object.keys(cart).length;
+	}
+
+	function getCartItemValue(name) {
+		if (!isInCart(name)) {
+			return 0;
+		}
+		return parseInt(getEl(getCartInputIdByName(name)).value);
+	}
+
+
+
+	/**
+	 * COMMON OPERATIONS
+	 */
+	function getAtomic(element) {
+		return parseFloat(elements[element]['atomic']);
+	}
+
+	// @todo
+	function getIons(element) {
+
+	}
+
+	function getItem(item) {
+		if (fertilizers[item] !== undefined) {
+			return Object.assign({}, fertilizers[item]);
+		}
+		return {};
+	}
+
+	function isElementVisible(element) {
+		return (elements[element]['is_hidden'] === undefined || elements[element]['is_hidden'] === false);
+	}
+
+	function getItemElementValue(name, element_name) {
+		return fertilizers[name][element_name];
+	}
+
+	function getMolar(element, raw_value) {
+		if (const__molar) {
+			return parseFloat(raw_value) / getAtomic(element);
+		}
+		return parseFloat(raw_value);
+	}
+
+	function getScalar(element, molar_value) {
+		if (const__molar) {
+			return parseFloat(molar_value) * getAtomic(element);
+		}
+		return parseFloat(molar_value);
+	}
+
+	function roundDecimals(raw) {
+		return Math.round(raw * 1000) / 1000;
+	}
+
+	function getCalculatedValuesForItem(name) {
+		return Object.assign(getItem(name), calculations[name]);
+	}
+
+	function _validateAmmonium(item) {
+		if (item['N'] === undefined) {
+			item['N'] = 0;
+			if (item['NO3'] !== undefined) item['N'] += item['NO3'];
+			if (item['NH4'] !== undefined) item['N'] += item['NH4'];
+		}
+	}
+
+	function getEl(id) {
+		return document.getElementById(id);
+	}
+
+	function getElValue(id) {
+		return getEl(id).value;
+	}
+
+	function _createCellDiv(cell_class, cell_innerHTML, cell_id) {
+		let div = document.createElement('div');
+		div.className = `divTableCell ${cell_class}`;
+
+		if (cell_id !== undefined) {
+			div.id = cell_id;
+		}
+
+		div.innerHTML = cell_innerHTML;
+		return div;
+	}
+
+	function _getDeviationPct(element) {
+		let expectation = _getExpectationValue(element);
+		return Math.min(100, Math.abs(calculations['__deviations'][element] / (expectation / 100)));
+	}
+
+	function _getExpectationValue(element) {
+		return getScalar(
+				element,
+				parseFloat(
+						getElValue(
+								getTableExpectedInputIdByName(element)
+						)
+				)
+		);
+	}
+
+
+
+
+	/**
+	 *	CALCULATIONS
+	 */
+	function recalculate() {
+		calculations = {
+			'__totals': {},
+			'__deviations': {}
+		};
+		Object.keys(elements).forEach(function (element) {
+			calculations['__totals'][element] = 0;
+		});
+		Object.keys(cart).forEach(function (key) {
+			let item = {};
+			Object.keys(elements).forEach(function (element_key) {
+				item[element_key] = roundDecimals(getItemElementValue(key, element_key) / 100.00 * getCartItemValue(key));
+				calculations['__totals'][element_key] += item[element_key];
+			});
+
+			calculations[key] = item;
+		});
+
+		_calculateEcAndNpkRatios();
+		_calculateDeviations();
+		_onAfterCalculationsCompleted();
+	}
+
+	function _calculateEcAndNpkRatios() {
+		let n = calculations['__totals']['N'];
+		let p = calculations['__totals']['P'];
+		let k = calculations['__totals']['K'];
+		let norma = n;
+		if (k < norma) norma = k;
+		if (p < norma) norma = p;
+		let nNorm = n / norma;
+		let pNorm = p / norma;
+		let kNorm = k / norma;
+
+		calculations['__totals']['ec'] = 0.095 * (calculations['__totals']["NH4"] / 14.0067 + 2 * calculations['__totals']["Ca"] / 40.078 + 2 * calculations['__totals']["Mg"] / 24.305 + calculations['__totals']["K"] / 39.0983) + 0.19;
+		calculations['__totals']['npk'] = nNorm.toFixed(2) + ' : ' + pNorm.toFixed(2) + ' : ' + kNorm.toFixed(2);
+	}
+
+	function _calculateDeviations() {
+		Object.keys(elements).forEach(function (element) {
+			if (!isElementVisible(element)) {
+				return;
+			}
+
+			let deviation = 0;
+			let expectation = _getExpectationValue(element);
+
+			if (expectation === 0) {
+				return;
+			}
+
+			deviation = calculations['__totals'][element] - expectation;
+			calculations['__deviations'][element] = deviation;
+		});
+	}
+
+	/**
+	 * EVENT TO TRIGGER FRONTEND ACTIONS
+	 */
+	function _onAfterCalculationsCompleted() {
+		updateDeviationsBar();
+	}
+
+
+
+
+	/**
+	 * INITS
+	 */
+	function initCatalog() {
+		Object.keys(fertilizers).forEach(function (key, index) {
+			var item = getItem(key);
+			var div = document.createElement('div');
+	  		div.className = 'catalog-item';
+			div.innerHTML = `
+					<img src="${item.img}" alt="somealt"/>
+					<div>${item.name}<br/><small>${item.longDesc}</small></div>
+					<input class="add" type="button" value="добавить" onclick="addToCart('${key}')"/>
+				`;
+			getEl('catalog').appendChild(div);
+		});
+	}
+
+	function initTableBars() {
+		Object.keys(elements).forEach(function (key) {
+			if (elements[key]['is_hidden'] !== undefined) {
+				return;
+			}
+
+			let div = _createCellDiv(
+				elements[key]['class'],
+				_getTemplateTableBar(key),
+				getTableRowBarIdByName(key, 'block')
+			);
+			getEl(getTableRowId('bars')).appendChild(div);
+		});
+
+		getEl(getTableRowId('bars')).style['visibility'] = "visible";
+	}
+
+	function initExpectedInputs() {
+		Object.keys(elements).forEach(function (key) {
+			if (elements[key]['is_hidden'] !== undefined) {
+				return;
+			}
+
+			let div = _createCellDiv(
+				elements[key]['class'],
+				_getTemplateTableExpectedCell(key)
+			);
+			getEl(getTableRowId('expected')).appendChild(div);
+		});
+
+		getEl(getTableRowId('expected')).style['visibility'] = "visible";
+	}
+
+	function initItems() {
+		if (const__items_is_inited) return;
+		const__items_is_inited = true;
+
+		Object.keys(fertilizers).forEach(function (fertilizer_name) {
+			fulfilled = fertilizers[fertilizer_name];
+			_validateAmmonium(fulfilled);
+			longDesc = [];
+
+			if (fertilizers[fertilizer_name]['desc'] !== undefined && fertilizers[fertilizer_name]['desc'] !== '') longDesc.push(fertilizers[fertilizer_name]['desc']);
+
+			// initialize complexes
+			Object.keys(conversions).forEach(function (key) {
+				if (fertilizers[fertilizer_name][key] !== undefined) {
+					converted_key = Object.keys(conversions[key])[0];
+					conversion_multiplier = conversions[key][converted_key];
+					fulfilled[converted_key] = parseFloat((fertilizers[fertilizer_name][key] * conversion_multiplier).toFixed(2));
+					fulfilled[key] = fertilizers[fertilizer_name][key];
+					longDesc.push(key + ': ' + fertilizers[fertilizer_name][key] + '%');
+				} else {
+					fulfilled[key] = 0;
+				}
+			});
+
+			// initialize base elements
+			Object.keys(elements).forEach(function (key) {
+				if (fertilizers[fertilizer_name][key] !== undefined) {
+					fulfilled[key] = fertilizers[fertilizer_name][key];
+					longDesc.push(key + ': ' + fertilizers[fertilizer_name][key] + '%');
+				} else {
+					fulfilled[key] = 0;
+				}
+			});
+
+			fulfilled['longDesc'] = longDesc.join(', ');
+		});
+	}
+
+
+
+	/**
+	 * TABLE FRONTEND ACTIONS
+	 */
+	function addTableRow(name) {
+		if (getEl(getTableRowId(name)) !== null) {
+			return;
+		}
+  		var div = document.createElement('div');
+  		div.className = 'divTableRow';
+  		if (getCartItemsCount() === 1) {
+  			div.className = div.className + ' separ';
+  		}
+  		div.id = getTableRowId(name);
+		div.innerHTML = getTableRowInnerHTMLByData(name);
+		getEl('main_table').appendChild(div);
+	}
+
+	function removeTableRow(name) {
+		if (getEl(getTableRowId(name)) === null) {
+			return;
+		}
+		getEl('main_table').removeChild(getEl(getTableRowId(name)));
+	}
+
+	function modifyTableRow(name) {
+		getEl(getTableRowId(name)).innerHTML = getTableRowInnerHTMLByData(name);
+	}
+
+	// @todo refactor
+	function modifyTableRowTotals() {
+		let template = Object.assign({'name': 'Текущий'}, getCalculatedValuesForItem('__totals'));
+		Object.keys(elements).forEach(function (element) {
+			template[element] = roundDecimals(getMolar(element, getCalculatedValuesForItem('__totals')[element]));
+		});
+		getEl(getTableRowId('current')).innerHTML = getTableRowInnerHTMLByDataTemplate(template);
+		getEl(getTableRowId('ec')).innerHTML = 'EC = ' + calculations['__totals']['ec'].toFixed(2) + ', N:P:K = ' + calculations['__totals']['npk'];
+	}
+
+	function getTableRowInnerHTMLByData(name) {
+		cart_item = Object.assign({}, getCalculatedValuesForItem(name));
+		Object.keys(elements).forEach(function (element) {
+			cart_item[element] = roundDecimals(getMolar(element, getCalculatedValuesForItem(name)[element]));
+		});
+		return getTableRowInnerHTMLByDataTemplate(cart_item);
+	}
+
+	// @todo refactor
+	function getTableRowInnerHTMLByDataTemplate(template) {
+		return `
+				<div class="divTableCell first fertitle">${template.name}</div>
+				<div class="divTableCell subproduct">${template.NO3 || 0}</div>
+				<div class="divTableCell subproduct">${template.NH4 || 0}</div>
+				<div class="divTableCell macro">${template.N || 0}</div>
+				<div class="divTableCell macro">${template.P || 0}</div>
+				<div class="divTableCell macro">${template.K || 0}</div>
+				<div class="divTableCell macro">${template.Ca || 0}</div>
+				<div class="divTableCell macro">${template.Mg || 0}</div>
+				<div class="divTableCell macro">${template.S || 0}</div>
+				<div class="divTableCell micro">${template.Fe || 0}</div>
+				<div class="divTableCell micro">${template.B || 0}</div>
+				<div class="divTableCell micro">${template.Zn || 0}</div>
+				<div class="divTableCell micro">${template.Cu || 0}</div>
+				<div class="divTableCell micro">${template.Mn || 0}</div>
+				<div class="divTableCell micro">${template.Mo || 0}</div>
+				<div class="divTableCell micro">${template.Cl || 0}</div>
+			`;
+	}
+
+	function updateDeviationsBar() {
+		Object.keys(elements).forEach(function(element) {
+			if (!isElementVisible(element)) {
+				return;
+			}
+
+			getEl(getTableRowBarIdByName(element, 'left')).style['width'] = '0';
+			getEl(getTableRowBarIdByName(element, 'right')).style['width'] = '0';
+			getEl(getTableRowBarIdByName(element, 'value')).innerText = '0';
+
+			let deviation_pct = _getDeviationPct(element);
+			let deviation_value = roundDecimals(getMolar(element, calculations['__deviations'][element]))
+			if (deviation_value > 0) {
+				deviation_value = `+${deviation_value}`;
+			} else if (isNaN(deviation_value)) {
+				deviation_value = '0';
+			}
+			if (calculations['__deviations'][element] < 0) {
+				getEl(getTableRowBarIdByName(element, 'left')).style['width'] = `${deviation_pct}%`;
+			} else if (calculations['__deviations'][element] > 0) {
+				getEl(getTableRowBarIdByName(element, 'right')).style['width'] = `${deviation_pct}%`;
+			}
+			getEl(getTableRowBarIdByName(element, 'value')).innerText = deviation_value;
+		});
+	}
+
+
+
+	/**
+	 * CART FRONTEND ACTIONS
+	 */
+	function increaseCartItem(name) {
+		value = parseInt(getEl(getCartInputIdByName(name)).value);
+		getEl(getCartInputIdByName(name)).value = value + 100;
+		editCartItem(name);
+	}
+
+	function decreaseCartItem(name) {
+		value = parseInt(getEl(getCartInputIdByName(name)).value);
+		if (value <= 100) {
+			getEl(getCartInputIdByName(name)).value = 0;
+		} else {
+			getEl(getCartInputIdByName(name)).value = value - 100;
+		}
+		editCartItem(name);
+	}
+
+	function addCartRow(name, cart_item) {
+		if (getEl(getCartIdByName(name)) !== null) {
+			return;
+		}
+		let div = document.createElement('div');
+		div.className = 'divTableRow';
+		div.id = getCartIdByName(name);
+		div.innerHTML = `
+				<div class="divTableCell first chosen-delete"><input class="delete" type="button" value="удалить" onclick='removeFromCart("${name}")'/> <input class="point" type="checkbox" checked="1" onclick="switchCartItem('${name}', this.checked)"/></div>
+				<div class="divTableCell chosen-amounter"><input type="button" class="point" value="-" onclick="decreaseCartItem('${name}')"/><input id="cart_row_value__${name}" type="text" onchange="editCartItem('${name}')" class="chosen-amount" placeholder="0" value="0"/><input type="button" class="point" value="+" onclick="increaseCartItem('${name}')"/> мг/л</div>
+				<div class="divTableCell chosen-title">${cart_item.name}<br/><span>${cart_item.longDesc}</span></div>
+			`;
+		getEl('cart_table').appendChild(div);
+	}
+
+	function removeCartRow(name) {
+		if (getEl(getCartIdByName(name)) === null) {
+			return;
+		}
+		getEl('cart_table').removeChild(getEl(getCartIdByName(name)));
+	}
+
+
+
+
+	/**
+	 * TEMPLATES
+	 */
+	function _getTemplateTableBar(element) {
+		let value = "0";
+		let left = _getTemplateTableBarLine(0, 'right', 'left', element);
+		let right = _getTemplateTableBarLine(0, 'left', 'right', element);
+		let id_value = getTableRowBarIdByName(element, 'value');
+
+		return `<div class="left50">
+					${left}
+				</div>
+				<div class="left50 centerline"></div>
+				<div class="left50">
+					${right}
+				</div>
+				<div style="text-align: center; font-size: 14px" id="${id_value}">${value}</div>`;
+	}
+
+	function _getTemplateTableBarLine(pct, float, alignment, element) {
+		return `<div class="line" id="${getTableRowBarIdByName(element, alignment)}" style="float: ${float}; width: ${pct}%;"></div>`;
+	}
+
+	function _getTemplateTableExpectedCell(element) {
+		return `<input type="text" id="${getTableExpectedInputIdByName(element)}" placeholder="${default__expected_placeholder}"/>`;
+	}
+
+
+
+
+
+
+
+
+	/**
+	 * ID GETTERS
+	 */
+	function getTableRowId(name) {
+		return `table_row__${name}`;
+	}
+
+	function getTableExpectedInputIdByName(name) {
+		return `table_expected_input__${name}`;
+	}
+
+	function getTableRowBarIdByName(name, subposition) {
+		return `table_row_bar__${name}_${subposition}`;
+	}
+
+	function getCartIdByName(name) {
+		return `cart_row__${name}`;
+	}
+
+	function getCartInputIdByName(name) {
+		return `cart_row_value__${name}`;
+	}
+
+
+	/**
+	 * APPLICATION INIT
+	 */
+	document.addEventListener('DOMContentLoaded', function() {
+		initItems();
+		initCatalog();
+		initTableBars();
+		initExpectedInputs();
+	});
+
+</script>
+</body>
+</html>
