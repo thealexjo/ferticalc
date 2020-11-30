@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 
 <head>
-	<title>Bezpiatov Calc 1.0</title>
+	<title>Ferticalc v0.3</title>
 	<style type="text/css">
 		/* --- TABLE --- */
 		.divTable{
@@ -27,16 +27,6 @@
 			word-wrap: unset;
 			vertical-align: middle;
 			text-align: center;
-		}
-		.divTableHeading {
-			background-color: #EEE;
-			display: table-header-group;
-			font-weight: bold;
-		}
-		.divTableFoot {
-			background-color: #EEE;
-			display: table-footer-group;
-			font-weight: bold;
 		}
 		.divTableBody {
 			display: table-row-group;
@@ -97,13 +87,21 @@
 			font-size: 12pt;
 		}
 
-		.line {
+		.lineleft {
 			margin: 0 auto;
 			color: #000;
 			width: 35px;
 			font-size: 11px;
 			height: 18px;
 			background-color: #a00;
+		}
+		.lineright {
+			margin: 0 auto;
+			color: #000;
+			width: 35px;
+			font-size: 11px;
+			height: 18px;
+			background-color: #00a;
 		}
 		.left50 {
 			display: inline-block;
@@ -115,21 +113,6 @@
 		.centerline {
 			width: 0;
 			border-left: 1px solid black;
-		}
-		.checkboxer {
-			display: block;
-			height: 30px;
-			text-align: center;
-			width: 30px;
-			float: left;
-		}
-		.whatsmyname {
-			display: block;
-			height: 30px;
-			text-align: center;
-			width: 100px;
-			float: right;
-			font-size: 12pt;
 		}
 		.spacer { height: 1px; background-color: #efefef; width: 100%; display: block; margin: 15px 0; }
 		.delete { width: 100px !important; }
@@ -266,7 +249,7 @@
 	</div>
 </div>
 
-
+<!-- @todo implement popup -->
 <!--<div style="position: absolute; width: 100%; height: 100%; background-color: #fff; opacity: 0.85; left: 0; top: 0">-->
 <!--	&nbsp;-->
 <!--</div>-->
@@ -405,6 +388,7 @@
 		}
 	};
 	var fertilizers = {
+		// Yara
 		"YaraLivaCalcinit": { "name": "YaraLiva Calcinit", "desc": "Кальций азотнокислый", "Ca": 19, "NO3": 14.4, "NH4": 1.1, "N": 15.5, "img": "https://yaraurl.net/dw49" },
 		"YaraLivaNitrabor": { "name": "YaraLiva Nitrabor", "desc": "", "Ca": 18.3, "NO3": 14.1, "NH4": 1.3, "B": 0.3, "img": "https://yaraurl.net/qio4" },
 		"YaraTeraKristaSop": { "name": "YaraTera KRISTA SOP", "desc": "", "K2O": 52, "S": 18, "img": "https://yaraurl.net/t08z" },
@@ -428,9 +412,17 @@
 		"YaraKristalonCucumber": { "name": "Yara KRISTALON 14-11-31 CUCUMBER", "desc": "", "NO3": 7, "NH2": 7, "P2O5": 11, "K2O": 31, "Mg": 1.5, "S": 2, "B": 0.02, "Cu": 0.01, "Fe": 0.15, "Mn": 0.1, "Mo": 0.002, "Zn": 0.01, "img": "https://yaraurl.net/oxe2" },
 		"YaraFerticareHydro": { "name": "Yara FERTICARE HYDRO 6-14-30", "desc": "", "NO3": 6, "P2O5": 13.7, "K2O": 30.1, "Mg": 2.6, "S": 3.7, "B": 0.03, "Cu": 0.02, "Fe": 0.2, "Mn": 0.14, "Mo": 0.004, "Zn": 0.02, "img": "https://yaraurl.net/229f" },
 		"YaraFerticareKombi": { "name": "Yara FERTICARE KOMBI 1 14-11-25", "desc": "", "NO3": 6, "NH4": 2.8, "NH2": 5.2, "P2O5": 11.5, "K2O": 25.3, "Mg": 1.4, "S": 5.6, "B": 0.02, "Cu": 0.01, "Fe": 0.1, "Mn": 0.1, "Mo": 0.002, "Zn": 0.01, "img": "https://yaraurl.net/229f" },
-
-		// "PartnerChelateZn15EDTA": { "name": "Brexil Zn (Брексил Цинк) Подробнее: https://organicplanet.in.ua/p1143625211-brexil-breksil-tsink.html", "desc": "", "Zn": 15, "img": "" },
-		"ValagroEDTA5SG": { "name": "Valagro EDTA 5 SG", "desc": "", "MgO": 5, "B": 0.5, "Cu": 1.5, "Fe": 4, "Mo": 0.1, "Mn": 4, "Zn": 1.5, "ph01": 4.5, "img": "https://images.ua.prom.st/2274611401_valagro-edta-5.jpg"}
+		"YaraMilaNPK161616": { "name": "YaraMila NPK 16-16-16", "desc": "", "NO3": 6.5, "NH4": 9.5, "P2O5": 16, "K2O": 16, "img": "https://yaraurl.net/3xrl" },
+		"YaraMilaNPK72028": { "name": "YaraMila NPK 7-20-28", "desc": "", "NO3": 0.9, "NH4": 6.1, "P2O5": 20, "K2O": 28, "Mg": 1.2, "S": 3, "B": 0.02, "Fe": 0.1, "Mn": 0.03, "Zn": 0.02, "img": "https://yaraurl.net/l8f5" },
+		"YaraMilaCROPCARE111121": { "name": "YaraMila CROPCARE 11-11-21", "desc": "", "NO3": 4.4, "NH4": 6.6, "P2O5": 10.5, "K2O": 21.2, "Mg": 1.6, "S": 10, "B": 0.05, "Cu": 0.03, "Fe": 0.08, "Mn": 0.25, "Zn": 0.04, "Mo": 0.002, "img": "https://yaraurl.net/rdvv" },
+		"YaraMilaNPK91225": { "name": "YaraMila NPK 9-12-25", "desc": "", "NO3": 2.6, "NH4": 6.4, "P2O5": 12, "K2O": 25, "Mg": 1.2, "S": 2.6, "B": 0.02, "img": "https://yaraurl.net/lwc" },
+		"YaraTeraTENSOCOCKTAIL": { "name": "YaraTera TENSO COCKTAIL", "desc": "", "Ca": 2.57, "B": 0.52, "Cu": 0.53, "Fe": 2.1, "Mn": 2.57, "Mo": 0.13, "Zn": 0.53, "img": "https://yaraurl.net/gjif" },
+		// Valagro
+		"ValagroEDTA5SG": { "name": "Valagro EDTA 5 SG", "desc": "", "MgO": 5, "B": 0.5, "Cu": 1.5, "Fe": 4, "Mo": 0.1, "Mn": 4, "Zn": 1.5, "ph01": 4.5, "img": "https://images.ua.prom.st/2274611401_valagro-edta-5.jpg"},
+		"ValagroEDTAZn": { "name": "Valagro EDTA Zn", "desc": "", "Zn": 13, "img": "https://images.ua.prom.st/2274611401_valagro-edta-5.jpg"},
+		"ValagroEDTAMn": { "name": "Valagro EDTA Mn", "desc": "", "Mn": 13, "img": "https://images.ua.prom.st/2274611401_valagro-edta-5.jpg"},
+		"ValagroEDTAMo": { "name": "Valagro EDTA Mo", "desc": "", "Mo": 13, "img": "https://images.ua.prom.st/2274611401_valagro-edta-5.jpg"},
+		"ValagroEDTASB": { "name": "Valagro EDTA SB", "desc": "", "B": 0.65, "Cu": 0.27, "Fe": 8, "Mo": 0.2, "Zn": 0.6, "Mn": 3.3, "img": "https://images.ua.prom.st/2274611401_valagro-edta-5.jpg"},
 	};
 
 	/**
@@ -908,7 +900,7 @@
 	}
 
 	function _getTemplateTableBarLine(pct, float, alignment, element) {
-		return `<div class="line" id="${getTableRowBarIdByName(element, alignment)}" style="float: ${float}; width: ${pct}%;"></div>`;
+		return `<div class="line${alignment}" id="${getTableRowBarIdByName(element, alignment)}" style="float: ${float}; width: ${pct}%;"></div>`;
 	}
 
 	function _getTemplateTableExpectedCell(element) {
