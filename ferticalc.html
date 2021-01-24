@@ -84,7 +84,10 @@
 			border-top: 1px solid #999999 !important;
 		}
 		.fertitle {
-			font-size: 12pt;
+			font-size: 12px;
+		}
+		.minifo {
+			font-size: 10px;
 		}
 
 		.lineleft {
@@ -417,7 +420,8 @@
 		"ValagroEDTASB": { "name": "Valagro EDTA SB", "desc": "", "B": 0.65, "Cu": 0.27, "Fe": 8, "Mo": 0.2, "Zn": 0.6, "Mn": 3.3, "img": "https://images.ua.prom.st/2274611401_valagro-edta-5.jpg"},
 		// Profi
 		"ProfiEDTAZn": { "name": "Profi EDTA Zn 15%", "desc": "", "Zn": 15, "img": "https://partner-profi.eu/product/images/orig/7392Zn.jpg"},
-		"ProfiEDTAMn": { "name": "Profi EDTA Mn 13%", "desc": "", "Mn": 13, "img": "https://partner-profi.eu/product/images/orig/7392Zn.jpg"}
+		"ProfiEDTAMn": { "name": "Profi EDTA Mn 13%", "desc": "", "Mn": 13, "img": "https://partner-profi.eu/product/images/orig/7392Zn.jpg"},
+		"ProfiEDTACu": { "name": "Profi EDTA Cu 15%", "desc": "", "Cu": 15, "img": "https://partner-profi.eu/product/images/orig/8205Cu.jpg"}
 	};
 
 	/**
@@ -743,7 +747,7 @@
 			return;
 		}
   		var div = document.createElement('div');
-  		div.className = 'divTableRow';
+  		div.className = 'divTableRow minifo';
   		if (getCartItemsCount() === 1) {
   			div.className = div.className + ' separ';
   		}
