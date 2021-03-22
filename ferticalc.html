@@ -123,6 +123,7 @@
 		.chosen-delete { width: 160px; }
 		.chosen-table { width: 1000px !important; }
 		.chosen-title { width: auto !important; text-align: left; }
+		.chosen-title>span { font-size: 11px }
 		.chosen-amounter { width: 210px; }
 
 		/** --- CATALOG --- **/
@@ -529,8 +530,8 @@
 		return fertilizers[name][element_name];
 	}
 
-	function getMolar(element, raw_value) {
-		if (const__molar) {
+	function getMolar(element, raw_value, force) {
+		if (const__molar || force) {
 			return parseFloat(raw_value) / getAtomic(element);
 		}
 		return parseFloat(raw_value);
@@ -627,11 +628,11 @@
 	}
 
 	function _calculateEcAndNpkRatios() {
-		let n = calculations['__totals']['N'];
-		let p = calculations['__totals']['P'];
-		let k = calculations['__totals']['K'];
-		let ca = calculations['__totals']['Ca'];
-		let mg = calculations['__totals']['Mg'];
+		let n = getMolar('N', calculations['__totals']['N'], true);
+		let p = getMolar('P', calculations['__totals']['P'], true);
+		let k = getMolar('K', calculations['__totals']['K'], true);
+		let ca = getMolar('Ca', calculations['__totals']['Ca'], true);
+		let mg = getMolar('Mg', calculations['__totals']['Mg'], true);
 		let norma = n;
 		if (k < norma) norma = k;
 		if (p < norma) norma = p;
