@@ -151,17 +151,17 @@
 			<div class="divTableBody" id="main_table">
 				<div class="divTableRow">
 					<div class="divTableCell first">&nbsp;</div>
-					<div class="divTableCell subproduct">NO<sub>3</sub></div>
-					<div class="divTableCell subproduct">NH<sub>4</sub></div>
+					<div class="divTableCell subproduct">NO<sub>3</sub><sup>-</sup></div>
+					<div class="divTableCell subproduct">NH<sub>4</sub><sup>+</sup></div>
 					<div class="divTableCell macro">N</div>
-					<div class="divTableCell macro">P</div>
-					<div class="divTableCell macro">K</div>
-					<div class="divTableCell macro">Ca</div>
-					<div class="divTableCell macro">Mg</div>
-					<div class="divTableCell macro">S</div>
-					<div class="divTableCell micro">Fe</div>
+					<div class="divTableCell macro">P<sup>-</sup></div>
+					<div class="divTableCell macro">K<sup>+</sup></div>
+					<div class="divTableCell macro">Ca<sup>2+</sup></div>
+					<div class="divTableCell macro">Mg<sup>2+</sup></div>
+					<div class="divTableCell macro">S<sup>2-</sup></div>
+					<div class="divTableCell micro">Fe<sup>2+</sup></div>
 					<div class="divTableCell micro">B</div>
-					<div class="divTableCell micro">Zn</div>
+					<div class="divTableCell micro">Zn<sup>2+</sup></div>
 					<div class="divTableCell micro">Cu</div>
 					<div class="divTableCell micro">Mn</div>
 					<div class="divTableCell micro">Mo</div>
@@ -302,7 +302,7 @@
 			"name": "P",
 			"unit": "mmol",
 			"atomic": 30.974,
-			"charge": -3,
+			"charge": -1,
 			"class": "macro"
 		},
 		"K": {
@@ -673,6 +673,7 @@
 	}
 
 	function _calculateIonicBalance() {
+		calculations['__ionic']['__total'] = 0;
 		Object.keys(elements).forEach(function (element) {
 			let meq_ratio = getElementMeqRatio(element);
 
@@ -681,6 +682,7 @@
 			}
 
 			calculations['__ionic'][element] = meq_ratio * calculations['__totals'][element];
+			calculations['__ionic']['__total'] = calculations['__ionic']['__total'] + calculations['__ionic'][element];
 		});
 
 	}
@@ -829,7 +831,7 @@
 			template[element] = roundDecimals(getMolar(element, getCalculatedValuesForItem('__totals')[element]));
 		});
 		getEl(getTableRowId('current')).innerHTML = getTableRowInnerHTMLByDataTemplate(template);
-		getEl(getTableRowId('ec')).innerHTML = 'EC = ' + calculations['__totals']['ec'].toFixed(2) + ', N:P:K = ' + calculations['__totals']['npk'] + ', N:K = ' + calculations['__totals']['nk'] + ', K:Ca:Mg = ' + calculations['__totals']['kcamg'];
+		getEl(getTableRowId('ec')).innerHTML = 'EC = ' + calculations['__totals']['ec'].toFixed(2) + ', N:P:K = ' + calculations['__totals']['npk'] + ', N:K = ' + calculations['__totals']['nk'] + ', K:Ca:Mg = ' + calculations['__totals']['kcamg'] + ', Ionic Balance = ' + calculations['__ionic']['__total'];
 	}
 
 	function getTableRowInnerHTMLByData(name) {
