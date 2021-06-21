@@ -40,8 +40,21 @@
 		}
 		body {
 			background-color: #EFEFEF;
-			font-family: Verdana;
+			font-family: Arial;
 			font-size: 16pt;
+		}
+
+		a {
+			text-decoration: none;
+			color: unset;
+		}
+
+		a:hover {
+			text-decoration: underline;
+		}
+
+		a.link {
+			color: #2777b8;
 		}
 
 		#main {
@@ -67,14 +80,22 @@
 
 		.unit { font-size: 11px; }
 
+		.ion_cation { font-size: 11px; color: #ff4e33 }
+		.ion_anion { font-size: 11px; color: #0088cc }
+
 		.divTableCell>input {
-			width: 100%;
+			width: 60px;
 			text-align: center;
 			font-weight: bold;
 			height: 30px;
 			font-size: 14pt;
 			color: #444;
 			vertical-align: middle;
+		}
+
+		.default-input {
+			border-radius: 6px;
+			border: 1px solid #eee;
 		}
 
 		.point { width: 45px !important; }
@@ -116,15 +137,90 @@
 			width: 0;
 			border-left: 1px solid black;
 		}
-		.spacer { height: 1px; background-color: #efefef; width: 100%; display: block; margin: 15px 0; }
-		.delete { width: 100px !important; }
+		.spacer {
+			height: 1px;
+			background-color: #efefef;
+			width: 100%;
+			display: block;
+			margin: 15px 0;
+			clear: both
+		}
+
+		.cartline {
+			border-radius: 6px; border: 1px solid #eee; padding: 0; margin: 0; height: 50px !important;
+			background-color: #eee;
+		}
+
+		.cartline:hover {
+			background-color: #ddd;
+		}
+
+		.chosen-remove {
+			border-top-right-radius: 0;
+			border-bottom-right-radius: 0;
+			border-right: 0;
+			filter: grayscale(0.6);
+		}
+
+		.chosen-minus {
+			border-radius: 0;
+		}
+
+		.chosen-plus {
+			border-top-left-radius: 0;
+			border-bottom-left-radius: 0;
+			border-left: 0;
+		}
+		.delete { width: 40px !important; }
 		span { color: #aaa; }
-		input.chosen-amount { width: 70px; }
-		.chosen-delete { width: 160px; }
-		.chosen-table { width: 1000px !important; }
-		.chosen-title { width: auto !important; text-align: left; }
-		.chosen-title>span { font-size: 11px }
-		.chosen-amounter { width: 210px; }
+		input.chosen-amount { width: 55px; }
+
+		.ratios-table { width: 540px !important; /*border: 0; */float: left; padding-bottom: 30px; border: 1px solid red; }
+		.chosen-table { width: 960px !important; border: 0; float: left; padding-bottom: 30px; }
+		.chosen-title { width: auto !important; text-align: left; border: 0; float: left; }
+		.chosen-titlebar {
+			margin-right: 5px;
+			padding-right: 15px;
+			border-right: 3px solid #fff;
+			max-width:500px;
+			max-height: 50px;
+			overflow:hidden;
+			text-overflow: ellipsis;
+			background: -webkit-linear-gradient(left,#000 70%, #fff);
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+			font-size: 14pt;
+			padding-top: 4px;
+		}
+		.divTableCartRow {
+			padding-top: 10px;
+			clear: both;
+		}
+
+		.chosen-titlebar>span { font-size: 11px; color: #777 }
+		.chosen-amounter { width: 325px; border: 0; float: left; }
+		.chosen-amount {
+			height: 46px !important;
+			border: 1px solid #eee !important;
+			border-left: 0 !important;
+			border-right: 0 !important;
+			text-align: right;
+		}
+		.chosen-mgl {
+			background-color: #fff;
+			color: #bbb !important;
+			width: 50px;
+		}
+		.chosen-value {
+			text-align: right !important;
+		}
+		.chosen-image {
+			float:left; max-height: 50px; width: auto
+		}
+
+		.divTableCartImage {
+			width: 50px; height: 50px; float: left; padding: 3px 10px;
+		}
 
 		/** --- CATALOG --- **/
 		.catalog-item {
@@ -141,6 +237,18 @@
 		.catalog { position: relative; font-size: 10pt;}
 		img { width: 70px;}
 		small { font-size: 10pt; color: #888; }
+
+		.main-table-switcher {
+			text-align: center;
+			width: 100%;
+			background-color: #fff;
+			color: #ccc;
+			height: 30px;
+			cursor: n-resize;
+		}
+		.main-table-switcher:hover {
+			background-color: #f8f8f8;
+		}
 	</style>
 </head>
 <body>
@@ -151,17 +259,17 @@
 			<div class="divTableBody" id="main_table">
 				<div class="divTableRow">
 					<div class="divTableCell first">&nbsp;</div>
-					<div class="divTableCell subproduct">NO<sub>3</sub><sup>-</sup></div>
-					<div class="divTableCell subproduct">NH<sub>4</sub><sup>+</sup></div>
-					<div class="divTableCell macro">N</div>
-					<div class="divTableCell macro">P<sup>-</sup></div>
-					<div class="divTableCell macro">K<sup>+</sup></div>
-					<div class="divTableCell macro">Ca<sup>2+</sup></div>
-					<div class="divTableCell macro">Mg<sup>2+</sup></div>
-					<div class="divTableCell macro">S<sup>2-</sup></div>
-					<div class="divTableCell micro">Fe<sup>2+</sup></div>
+					<div class="divTableCell macro" data-switchable-element="NO3">NO<sub>3</sub><sup class="ion_anion">-</sup></div>
+					<div class="divTableCell macro" data-switchable-element="NH4">NH<sub>4</sub><sup class="ion_cation">+</sup></div>
+					<div class="divTableCell macro" data-switchable-element="N">N</div>
+					<div class="divTableCell macro" data-switchable-element="P">P<sup  class="ion_anion">-</sup></div>
+					<div class="divTableCell macro" data-switchable-element="K">K<sup class="ion_cation">+</sup></div>
+					<div class="divTableCell macro" data-switchable-element="Ca">Ca<sup class="ion_cation">2+</sup></div>
+					<div class="divTableCell macro" data-switchable-element="Mg">Mg<sup class="ion_cation">2+</sup></div>
+					<div class="divTableCell macro" data-switchable-element="S">S<sup class="ion_anion">2-</sup></div>
+					<div class="divTableCell micro">Fe<sup class="ion_cation">2+</sup></div>
 					<div class="divTableCell micro">B</div>
-					<div class="divTableCell micro">Zn<sup>2+</sup></div>
+					<div class="divTableCell micro">Zn<sup class="ion_cation">2+</sup></div>
 					<div class="divTableCell micro">Cu</div>
 					<div class="divTableCell micro">Mn</div>
 					<div class="divTableCell micro">Mo</div>
@@ -169,29 +277,29 @@
 				</div>
 				<div class="divTableRow">
 					<div class="divTableCell first unit">на литр</div>
-					<div class="divTableCell subproduct unit">mg</div>
-					<div class="divTableCell subproduct unit">mg</div>
-					<div class="divTableCell macro unit">mg</div>
-					<div class="divTableCell macro unit">mg</div>
-					<div class="divTableCell macro unit">mg</div>
-					<div class="divTableCell macro unit">mg</div>
-					<div class="divTableCell macro unit">mg</div>
-					<div class="divTableCell macro unit">mg</div>
-					<div class="divTableCell micro unit">mg</div>
-					<div class="divTableCell micro unit">mg</div>
-					<div class="divTableCell micro unit">mg</div>
-					<div class="divTableCell micro unit">mg</div>
-					<div class="divTableCell micro unit">mg</div>
-					<div class="divTableCell micro unit">mg</div>
-					<div class="divTableCell micro unit">mg</div>
+					<div class="divTableCell macro unit"><a data-element-class="macro" href="#" onclick="switchUnits(this); return false;">mg</a></div>
+					<div class="divTableCell macro unit"><a data-element-class="macro" href="#" onclick="switchUnits(this); return false;">mg</a></div>
+					<div class="divTableCell macro unit"><a data-element-class="macro" href="#" onclick="switchUnits(this); return false;">mg</a></div>
+					<div class="divTableCell macro unit"><a data-element-class="macro" href="#" onclick="switchUnits(this); return false;">mg</a></div>
+					<div class="divTableCell macro unit"><a data-element-class="macro" href="#" onclick="switchUnits(this); return false;">mg</a></div>
+					<div class="divTableCell macro unit"><a data-element-class="macro" href="#" onclick="switchUnits(this); return false;">mg</a></div>
+					<div class="divTableCell macro unit"><a data-element-class="macro" href="#" onclick="switchUnits(this); return false;">mg</a></div>
+					<div class="divTableCell macro unit"><a data-element-class="macro" href="#" onclick="switchUnits(this); return false;">mg</a></div>
+					<div class="divTableCell micro unit"><a data-element-class="micro" href="#" onclick="switchUnits(this); return false;">mg</a></div>
+					<div class="divTableCell micro unit"><a data-element-class="micro" href="#" onclick="switchUnits(this); return false;">mg</a></div>
+					<div class="divTableCell micro unit"><a data-element-class="micro" href="#" onclick="switchUnits(this); return false;">mg</a></div>
+					<div class="divTableCell micro unit"><a data-element-class="micro" href="#" onclick="switchUnits(this); return false;">mg</a></div>
+					<div class="divTableCell micro unit"><a data-element-class="micro" href="#" onclick="switchUnits(this); return false;">mg</a></div>
+					<div class="divTableCell micro unit"><a data-element-class="micro" href="#" onclick="switchUnits(this); return false;">mg</a></div>
+					<div class="divTableCell micro unit"><a data-element-class="micro" href="#" onclick="switchUnits(this); return false;">mg</a></div>
 				</div>
 				<div class="divTableRow" id="table_row__expected" style="visibility: hidden">
 					<div class="divTableCell first">Целевой</div>
 				</div>
 				<div class="divTableRow" id="table_row__current">
 					<div class="divTableCell first">Текущий</div>
-					<div class="divTableCell subproduct">0</div>
-					<div class="divTableCell subproduct">0</div>
+					<div class="divTableCell macro">0</div>
+					<div class="divTableCell macro">0</div>
 					<div class="divTableCell macro">0</div>
 					<div class="divTableCell macro">0</div>
 					<div class="divTableCell macro">0</div>
@@ -210,23 +318,190 @@
 					<div class="divTableCell first">&nbsp;</div>
 				</div>
 			</div>
+			<div class="divTableBody" id="secondary_table"></div>
 		</div>
+		<div class="main-table-switcher" onclick="switchTableTotals(this);">&#8673;</div>
 
 
 		<div class="spacer">&nbsp;</div>
 
 
 		<h2>Выбранные</h2>
+
 		<div id="table_row__ec"></div>
-		<div class="divTable chosen-table">
+		<div class="divTable chosen-table" style="float:left">
 			<div class="divTableBody" id="cart_table">
+			</div>
+		</div>
+		<style type="text/css">
+			.graph-legend-left {
+				color: #bbb;
+				position: absolute;
+				height: 30px;
+				font-size: 10pt;
+				line-height: 20px;
+				left: -35px;
+				width: 30px;
+				text-align: right;
+			}
+			.graph-legend-line-h {
+				position: absolute;
+				height: 1px;
+				background-color: #eee;
+			}
+
+			.graph-color-kcamg-active {
+				background-color: #a950ae;
+			}
+
+			.graph-color-kcamg-pale {
+				background-color: #fcc1ff;
+			}
+
+			.graph-color-ec-active {
+				background-color: #1a96d0;
+			}
+
+			.graph-color-ec-pale {
+				background-color: #bae2f8;
+			}
+
+			.graph-bar-legend {
+				position:absolute;
+				bottom: -30px;
+				width: 50px;
+				color: #444;
+				text-align: center;
+				left: -10px;
+			}
+
+			.graph-color-n-active {
+				background-color: #46ae33;
+			}
+
+			.graph-color-n-pale {
+				background-color: #c5e5b1;
+			}
+
+			.graph-bar-value {
+				font-weight: bold;
+				font-size: 10pt;
+				width: 50px;
+				text-align: center;
+				position:relative;
+				left: -10px;
+			}
+
+			.graph-bar-value-white {
+				color: #fff;
+			}
+
+			.graph-bar-value-blue {
+				color: #1a96d0;
+			}
+
+			.graph-bar {
+				position:absolute;
+				bottom:0;
+				width: 30px;
+			}
+
+		</style>
+		<div class="divTable ratios-table" style="float:left; border: 0">
+			<div class="divTableBody">
+				<div style="width: 60px; height: 150px; border-left: 1px solid #aaa; border-bottom: 1px solid #aaa; position: relative; float: left">
+					<div style="position: absolute; left: 0; bottom: 0; z-index: 1; color: #bbb">
+						<div class="graph-legend-line-h" style="bottom: 20px; width: 60px"></div>
+						<div class="graph-legend-left" style="bottom: 20px">0.8</div>
+						<div class="graph-legend-line-h" style="bottom: 40px; width: 60px"></div>
+						<div class="graph-legend-line-h" style="bottom: 60px; width: 60px"></div>
+						<div class="graph-legend-left" style="bottom: 60px">1.6</div>
+						<div class="graph-legend-line-h" style="bottom: 80px; width: 60px"></div>
+						<div class="graph-legend-line-h" style="bottom: 100px; width: 60px"></div>
+						<div class="graph-legend-left" style="bottom: 100px">2</div>
+						<div class="graph-legend-line-h" style="bottom: 120px; width: 60px"></div>
+						<div class="graph-legend-line-h" style="bottom: 140px; width: 60px"></div>
+					</div>
+					<div style="position: absolute; bottom: 0; left: 15px; clear: both; z-index: 10">
+						<div class="graph-bar graph-color-ec-active" id="graphs_ec_bar_value" style="height: 100px;"></div>
+<!--						<div class="graph-color-ec-pale" style="position:absolute; bottom:0; width: 30px; height: 100px;"></div>-->
+						<div class="graph-bar-legend">EC</div>
+						<div class="graph-bar-value graph-bar-value-blue" id="graphs_ec_value" style="position:relative; bottom: 100px; left: -10px;">2.2</div>
+					</div>
+				</div>
+
+				<div style="position: relative; width: 30px; float: left; clear: right">&nbsp;</div>
+
+<!--				K:Ca:Mg-->
+				<div style="width: 210px; height: 150px; border-left: 1px solid #aaa; border-bottom: 1px solid #aaa; position: relative; float: left;">
+<!--					Lines and legend-->
+					<div style="position: absolute; left: 0; bottom: 0; z-index: 1; color: #bbb">
+						<div class="graph-legend-line-h" style="bottom: 20px; width:210px"></div>
+						<div class="graph-legend-left" style="bottom: 0">1</div>
+						<div class="graph-legend-line-h" style="bottom: 40px; width:210px"></div>
+						<div class="graph-legend-line-h" style="bottom: 60px; width:210px"></div>
+						<div class="graph-legend-left" style="bottom: 40px">3</div>
+						<div class="graph-legend-line-h" style="bottom: 80px; width:210px"></div>
+						<div class="graph-legend-line-h" style="bottom: 100px; width:210px"></div>
+						<div class="graph-legend-left" style="bottom: 80px">5</div>
+						<div class="graph-legend-line-h" style="bottom: 120px; width:210px"></div>
+						<div class="graph-legend-line-h" style="bottom: 140px; width:210px"></div>
+						<div class="graph-legend-left" style="bottom: 120px">7</div>
+					</div>
+<!--					Values -->
+					<div style="position: absolute; bottom: 0; left: 30px; clear: both; z-index: 10">
+<!--						<div class="graph-color-kcamg-pale" style="position:absolute; bottom:0; width: 30px; height: 100px; background-color: #fcc1ff; color: #a950ae; opacity: 100%"></div>-->
+						<div class="graph-bar graph-color-kcamg-active" id="graphs_kcamg_k_bar_value" style="height: 100px;"></div>
+						<div class="graph-bar-value graph-bar-value-white" id="graphs_kcamg_k_value" style="bottom: 80px;">3.7</div>
+						<div class="graph-bar-legend">K</div>
+					</div>
+					<div style="position: absolute; bottom: 0; left: 90px; clear: both; z-index: 10">
+						<div class="graph-bar graph-color-kcamg-active" id="graphs_kcamg_ca_bar_value" style="height: 60px;"></div>
+						<div class="graph-bar-value graph-bar-value-white" id="graphs_kcamg_ca_value" style="bottom: 40px;">3.7</div>
+						<div class="graph-bar-legend">Ca</div>
+					</div>
+					<div style="position: absolute; bottom: 0; left: 150px; clear: both; z-index: 10">
+						<div class="graph-bar graph-color-kcamg-active" id="graphs_kcamg_mg_bar_value" style="height: 20px;"></div>
+						<div class="graph-bar-value graph-bar-value-white" id="graphs_kcamg_mg_value" style="bottom: 0;">3.7</div>
+						<div class="graph-bar-legend">Mg</div>
+					</div>
+				</div>
+
+				<div style="position: relative; width: 30px; float: left; clear: right">&nbsp;</div>
+
+				<div style="width: 150px; height: 150px; border-left: 1px solid #aaa; border-bottom: 1px solid #aaa; position: relative; float: left;">
+					<div style="position: absolute; left: 0; bottom: 0; z-index: 1; color: #bbb">
+						<div class="graph-legend-line-h" style="bottom: 20px; width:150px"></div>
+						<div class="graph-legend-left" style="bottom: 0">1</div>
+						<div class="graph-legend-line-h" style="bottom: 40px; width:150px"></div>
+						<div class="graph-legend-line-h" style="bottom: 60px; width:150px"></div>
+						<div class="graph-legend-left" style="bottom: 40px">1.4</div>
+						<div class="graph-legend-line-h" style="bottom: 80px; width:150px"></div>
+						<div class="graph-legend-line-h" style="bottom: 100px; width:150px"></div>
+						<div class="graph-legend-left" style="bottom: 80px">1.8</div>
+						<div class="graph-legend-line-h" style="bottom: 120px; width:150px"></div>
+						<div class="graph-legend-line-h" style="bottom: 140px; width:150px"></div>
+						<div class="graph-legend-left" style="bottom: 120px">2.2</div>
+					</div>
+					<div style="position: absolute; bottom: 0; left: 30px; clear: both; z-index: 10">
+<!--						<div class="graph-color-n-pale" style="position:absolute; bottom:0; width: 30px; height: 20px;"></div>-->
+						<div class="graph-bar graph-color-n-active" id="graphs_nk_n_bar_value" style="height: 20px;"></div>
+						<div class="graph-bar-value graph-bar-value-white" id="graphs_nk_n_value" style="bottom: 0px">3.7</div>
+						<div class="graph-bar-legend">N</div>
+					</div>
+					<div style="position: absolute; bottom: 0; left: 90px; clear: both; z-index: 10">
+						<div class="graph-bar graph-color-n-active" id="graphs_nk_k_bar_value" style="height: 60px;"></div>
+<!--						<div class="graph-color-n-pale" style="position:absolute; bottom:0; width: 30px; height: 20px;"></div>-->
+						<div class="graph-bar-value graph-bar-value-white" id="graphs_nk_k_value" style="bottom: 0px">3.7</div>
+						<div class="graph-bar-legend">K</div>
+					</div>
+				</div>
 			</div>
 		</div>
 
 		<div class="spacer">&nbsp;</div>
 
-
-		<h2>Каталог</h2>
+		<h2><a class="link" href="#" onclick="toggle(this, document.getElementById('catalog')); return false;">&#8673; Каталог</a></h2>
 		<div class="catalog">
 			<div id="catalog"></div>
 			<div style="clear: both;"></div>
@@ -256,6 +531,7 @@
 
 	var cart = {};
 	var calculations = {};
+	var targets = {};
 	var conversions = {
 		"P2O5": { "P": 0.436 },
 		"K2O": { "K": 0.83 },
@@ -266,9 +542,23 @@
 	};
 
 	var units = {
+		"mg": { "name": "mg", "text": "mg", "divider": 1 },
+		"mcg": { "name": "mcg", "text": "μg", "divider": 0.001 },
 		"mmol": { "name": "mmol", "text": "mmol", "divider": 1 },
 		"umol": { "name": "umol", "text": "μmol", "divider": 0.001 },
 	};
+
+	var units_order = {
+		"macro": ["mg", "mmol"],
+		"micro": ["mg", "mcg", "mmol", "umol"],
+		"ratios": ["mg", "mmol"]
+	};
+
+	var units_current = {
+		'macro': 'mg',
+		'micro': 'mg',
+		'ratios': 'mmol'
+	}
 
 	var elements = {
 		"H" : {
@@ -276,21 +566,21 @@
 			"unit": "mmol",
 			"atomic": 1,
 			"is_hidden": true,
-			"class": "subproduct"
+			"class": "macro"
 		},
 		"NO3": {
 			"name": "NO3",
 			"unit": "mmol",
 			"atomic": 14,
 			"charge": -1,
-			"class": "subproduct"
+			"class": "macro"
 		},
 		"NH4": {
 			"name": "NH4",
 			"unit": "mmol",
 			"atomic": 14,
 			"charge": 1,
-			"class": "subproduct"
+			"class": "macro"
 		},
 		"N": {
 			"name": "N",
@@ -381,54 +671,56 @@
 	};
 	var fertilizers = {
 		// Yara
-		"YaraLivaCalcinit": { "name": "YaraLiva Calcinit", "desc": "Кальций азотнокислый", "Ca": 19, "NO3": 14.4, "NH4": 1.1, "N": 15.5, "img": "https://yaraurl.net/dw49" },
-		"YaraLivaNitrabor": { "name": "YaraLiva Nitrabor", "desc": "", "Ca": 18.3, "NO3": 14.1, "NH4": 1.3, "B": 0.3, "img": "https://yaraurl.net/qio4" },
-		"YaraTeraKristaSop": { "name": "YaraTera KRISTA SOP", "desc": "", "K2O": 52, "S": 18, "img": "https://yaraurl.net/t08z" },
-		"YaraTeraKristaMgS": { "name": "YaraTera KRISTA MgS", "desc": "", "MgO": 16, "SO3": 32, "img": "https://yaraurl.net/m9r0" },
-		"YaraTeraKristaMKP": { "name": "YaraTera KRISTA MKP", "desc": "", "P2O5": 52, "K2O": 34, "img": "https://yaraurl.net/fdo" },
-		"YaraTeraKristaMAP": { "name": "YaraTera KRISTA MAP", "desc": "", "NH4": 12, "P2O5": 61, "img": "https://yaraurl.net/fm4f" },
-		"YaraTeraKristaMAG": { "name": "YaraTera KRISTA MAG", "desc": "", "NO3": 11, "Mg": 9, "img": "https://yaraurl.net/vifn" },
-		"YaraTeraKristaK": { "name": "YaraTera KRISTA K", "desc": "", "NO3": 13.5, "K2O": 45.5, "img": "https://yaraurl.net/gzog" },
-		"YaraTeraKristalonPlus": { "name": "YaraTera KRISTALON SPECIAL PLUS 20-20-20 +micro", "desc": "", "NO3": 3.1, "NH4": 2.3, "NH2": 14.6, "K2O": 20, "P2O5": 20, "S": 1.6, "B": 0.025, "Cu": 0.01, "Fe": 0.07, "Mn": 0.04, "Mo": 0.004, "Zn": 0.025, "img": "https://yaraurl.net/vsgg" },
-		"YaraTeraKristalonWhiteLabel": { "name": "YaraTera KRISTALON 15-5-30 WHITE LABEL", "desc": "", "NO3": 11.3, "NH4": 3.7, "ph01": 4.5, "P2O5": 5, "K2O": 30, "Mg": 1.9, "S": 2, "B": 0.025, "Cu": 0.01, "Fe": 0.07, "Mn": 0.04, "Zn": 0.025, "img": "https://yaraurl.net/bk71" },
-		"YaraTeraKristalonWhite": { "name": "YaraTera KRISTALON 13-5-26 WHITE", "desc": "", "ph01": 4.3, "NO3": 7, "NH4": 6, "P2O5": 5, "K2O": 26, "Mg": 1.9, "S": 9, "B": 0.025, "Cu": 0.01, "Fe": 0.07, "Mn": 0.04, "Mo": 0.004, "Zn": 0.025, "img": "https://yaraurl.net/ohc8" },
-		"YaraTeraKristalonBlueLabel": { "name": "YaraTera KRISTALON 19-6-20 BLUE LABEL", "desc": "", "NO3": 11.9, "NH4": 7.1, "P2O5": 6, "K2O": 20, "Mg": 1.9, "S": 3, "B": 0.025, "Cu": 0.01, "Fe": 0.07, "Mn": 0.04, "Mo": 0.004, "Zn": 0.025, "img": "https://yaraurl.net/7ext" },
-		"YaraTeraKristalonBlue": { "name": "YaraTera KRISTALON 17-6-18 BLUE", "desc": "", "ph01": 4.2, "NO3": 8, "NH4": 9, "P2O5": 6, "K2O": 18, "Mg": 1.2, "S": 8, "B": 0.025, "Cu": 0.01, "Fe": 0.07, "Mn": 0.04, "Mo": 0.004, "Zn": 0.025, "img": "https://yaraurl.net/rb2i" },
-		"YaraTeraKristaBrown": { "name": "YaraTera KRISTALON 3-11-38 BROWN", "desc": "", "ph01": 4.1, "NO3": 3, "P2O5": 11, "K2O": 38, "Mg": 2.4, "S": 11, "B": 0.025, "Cu": 0.01, "Fe": 0.07, "Mn": 0.04, "Mo": 0.004, "Zn": 0.025, "img": "https://yaraurl.net/qpnl" },
-		"YaraTeraKristaOrange": { "name": "YaraTera KRISTALON 6-12-36 ORANGE", "desc": "", "ph01": 4.2, "NO3": 4.5, "NH4": 1.5, "P2O5": 12, "K2O": 36, "Mg": 1.8, "S": 8, "B": 0.025, "Cu": 0.01, "Fe": 0.07, "Mn": 0.04, "Mo": 0.004, "Zn": 0.025, "img": "https://yaraurl.net/m243" },
-		"YaraTeraKristaRed": { "name": "YaraTera KRISTALON 12-12-36 RED", "desc": "", "ph01": 4.5, "NO3": 10.1, "K2O": 36, "NH4": 1.9, "P2O5": 12, "Mg": 0.6, "S": 1, "B": 0.025, "Cu": 0.01, "Fe": 0.07, "Mn": 0.04, "Mo": 0.004, "Zn": 0.025, "img": "https://yaraurl.net/nlvz" },
-		"YaraTeraKristaYellow": { "name": "YaraTera KRISTALON 13-40-13 YELLOW", "desc": "", "ph01": 4.3, "NO3": 4.4, "NH4": 8.6, "P2O5": 40, "K2O": 13, "B": 0.025, "Cu": 0.01, "Fe": 0.07, "Mn": 0.04, "Mo": 0.004, "Zn": 0.025, "img": "https://yaraurl.net/0mub" },
-		"YaraTeraKristaSpecial": { "name": "YaraTera KRISTALON SPECIAL 18-18-18 +3MgO +micro", "desc": "", "ph01": 4.3, "NO3": 4.9, "NH3": 3.3, "NH2": 9.8, "P2O5": 18, "K2O": 18, "MgO": 3, "SO3": 5, "B": 0.025, "Cu": 0.01, "Fe": 0.07, "Mn": 0.04, "Mo": 0.004, "Zn": 0.025, "img": "https://yaraurl.net/vsgg" },
-		"YaraTeraRexolinD12": { "name": "YaraTera Rexolin D12", "desc": "", "Fe": 11.6, "img": "https://s.brandmaster.com/s/40WeJ2" },
-		"YaraTeraRexolinQ40": { "name": "YaraTera Rexolin Q40", "desc": "", "Fe": 6, "img": "https://s.brandmaster.com/s/40WeJ2" },
-		"YaraTeraRexolinABC": { "name": "YaraTera Rexolin ABC", "desc": "", "Mg": 1.85, "B": 0.5, "Cu": 1.5, "Fe": 4, "Mn": 4, "Mo": 0.1, "Zn": 1.5, "img": "https://s.brandmaster.com/s/qrZEx2" },
-		"YaraTeraRexolinAPN": { "name": "YaraTera Rexolin APN", "desc": "", "B": 0.9, "Cu": 0.2, "Fe": 4, "Mn": 5.6, "Mo": 0.2, "Zn": 1.1, "img": "https://s.brandmaster.com/s/qrZEx2" },
-		"YaraVitaRexolinZn15": { "name": "YaraVita Rexolin Zn15", "desc": "", "Zn": 14.8, "img": "https://s.brandmaster.com/s/qrZEx2" },
-		"YaraVitaRexolinMn13": { "name": "YaraVita Rexolin Mn13", "desc": "", "Mn": 12.8, "img": "https://s.brandmaster.com/s/qrZEx2" },
-		"YaraVitaRexolinCu15": { "name": "YaraVita Rexolin Cu15", "desc": "", "Cu": 14.8, "img": "https://s.brandmaster.com/s/qrZEx2" },
-		"YaraKristalonCucumber": { "name": "Yara KRISTALON 14-11-31 CUCUMBER", "desc": "", "NO3": 7, "NH2": 7, "P2O5": 11, "K2O": 31, "Mg": 1.5, "S": 2, "B": 0.02, "Cu": 0.01, "Fe": 0.15, "Mn": 0.1, "Mo": 0.002, "Zn": 0.01, "img": "https://yaraurl.net/oxe2" },
-		"YaraFerticareHydro": { "name": "Yara FERTICARE HYDRO 6-14-30", "desc": "", "NO3": 6, "P2O5": 13.7, "K2O": 30.1, "Mg": 2.6, "S": 3.7, "B": 0.03, "Cu": 0.02, "Fe": 0.2, "Mn": 0.14, "Mo": 0.004, "Zn": 0.02, "img": "https://yaraurl.net/229f" },
-		"YaraFerticareKombi": { "name": "Yara FERTICARE KOMBI 1 14-11-25", "desc": "", "NO3": 6, "NH4": 2.8, "NH2": 5.2, "P2O5": 11.5, "K2O": 25.3, "Mg": 1.4, "S": 5.6, "B": 0.02, "Cu": 0.01, "Fe": 0.1, "Mn": 0.1, "Mo": 0.002, "Zn": 0.01, "img": "https://yaraurl.net/229f" },
-		"YaraMilaNPK161616": { "name": "YaraMila NPK 16-16-16", "desc": "", "NO3": 6.5, "NH4": 9.5, "P2O5": 16, "K2O": 16, "img": "https://yaraurl.net/3xrl" },
-		"YaraMilaNPK72028": { "name": "YaraMila NPK 7-20-28", "desc": "", "NO3": 0.9, "NH4": 6.1, "P2O5": 20, "K2O": 28, "Mg": 1.2, "S": 3, "B": 0.02, "Fe": 0.1, "Mn": 0.03, "Zn": 0.02, "img": "https://yaraurl.net/l8f5" },
-		"YaraMilaCROPCARE111121": { "name": "YaraMila CROPCARE 11-11-21", "desc": "", "NO3": 4.4, "NH4": 6.6, "P2O5": 10.5, "K2O": 21.2, "Mg": 1.6, "S": 10, "B": 0.05, "Cu": 0.03, "Fe": 0.08, "Mn": 0.25, "Zn": 0.04, "Mo": 0.002, "img": "https://yaraurl.net/rdvv" },
-		"YaraMilaNPK91225": { "name": "YaraMila NPK 9-12-25", "desc": "", "NO3": 2.6, "NH4": 6.4, "P2O5": 12, "K2O": 25, "Mg": 1.2, "S": 2.6, "B": 0.02, "img": "https://yaraurl.net/lwc" },
-		"YaraTeraTENSOCOCKTAIL": { "name": "YaraTera TENSO COCKTAIL", "desc": "", "Ca": 2.57, "B": 0.52, "Cu": 0.53, "Fe": 2.1, "Mn": 2.57, "Mo": 0.13, "Zn": 0.53, "img": "https://yaraurl.net/gjif" },
-		"YaraMilaComplex12118": { "name": "YaraMila COMPLEX 12-11-18", "desc": "", "NO3": 5, "NH4": 7, "P2O5": 11, "K2O": 18, "Mg": 1.6, "S": 8, "B": 0.015, "Fe": 0.2, "Mn": 0.02, "Zn": 0.02, "img": "https://yaraurl.net/pz23" },
-		"YaraZintrac": { "name": "YaraVita ZINTRAC 700", "desc": "", "NO3": 1, "Zn": 40, "img": "https://yaraurl.net/pz23" },
+		"YaraLivaCalcinit": { "name": "YaraLiva Calcinit", "manufacturer": "Yara", "market": "UA,RU", "desc": "Кальций азотнокислый", "Ca": 19, "NO3": 14.4, "NH4": 1.1, "N": 15.5, "img": "https://yaraurl.net/dw49" },
+		"YaraLivaNitrabor": { "name": "YaraLiva Nitrabor", "manufacturer": "Yara", "market": "UA,RU", "desc": "", "Ca": 18.3, "NO3": 14.1, "NH4": 1.3, "B": 0.3, "img": "https://yaraurl.net/qio4" },
+		"YaraTeraKristaSop": { "name": "YaraTera KRISTA SOP", "manufacturer": "Yara", "market": "UA,RU", "desc": "", "K2O": 52, "S": 18, "img": "https://yaraurl.net/t08z" },
+		"YaraTeraKristaMgS": { "name": "YaraTera KRISTA MgS", "manufacturer": "Yara", "market": "UA,RU", "desc": "", "MgO": 16, "SO3": 32, "img": "https://yaraurl.net/m9r0" },
+		"YaraTeraKristaMKP": { "name": "YaraTera KRISTA MKP", "manufacturer": "Yara", "market": "UA,RU", "desc": "", "P2O5": 52, "K2O": 34, "img": "https://yaraurl.net/fdo" },
+		"YaraTeraKristaMAP": { "name": "YaraTera KRISTA MAP", "manufacturer": "Yara", "market": "UA,RU", "desc": "", "NH4": 12, "P2O5": 61, "img": "https://yaraurl.net/fm4f" },
+		"YaraTeraKristaMAG": { "name": "YaraTera KRISTA MAG", "manufacturer": "Yara", "market": "UA,RU", "desc": "", "NO3": 11, "Mg": 9, "img": "https://yaraurl.net/vifn" },
+		"YaraTeraKristaK": { "name": "YaraTera KRISTA K", "manufacturer": "Yara", "market": "UA,RU", "desc": "", "NO3": 13.5, "K2O": 45.5, "img": "https://yaraurl.net/gzog" },
+		"YaraTeraKristalonPlus": { "name": "YaraTera KRISTALON SPECIAL PLUS 20-20-20 +micro", "manufacturer": "Yara", "market": "UA,RU", "desc": "", "NO3": 3.1, "NH4": 2.3, "NH2": 14.6, "K2O": 20, "P2O5": 20, "S": 1.6, "B": 0.025, "Cu": 0.01, "Fe": 0.07, "Mn": 0.04, "Mo": 0.004, "Zn": 0.025, "img": "https://yaraurl.net/vsgg" },
+		"YaraTeraKristalonWhiteLabel": { "name": "YaraTera KRISTALON 15-5-30 WHITE LABEL", "manufacturer": "Yara", "market": "UA,RU", "desc": "", "NO3": 11.3, "NH4": 3.7, "ph01": 4.5, "P2O5": 5, "K2O": 30, "Mg": 1.9, "S": 2, "B": 0.025, "Cu": 0.01, "Fe": 0.07, "Mn": 0.04, "Zn": 0.025, "img": "https://yaraurl.net/bk71" },
+		"YaraTeraKristalonWhite": { "name": "YaraTera KRISTALON 13-5-26 WHITE", "manufacturer": "Yara", "market": "UA,RU", "desc": "", "ph01": 4.3, "NO3": 7, "NH4": 6, "P2O5": 5, "K2O": 26, "Mg": 1.9, "S": 9, "B": 0.025, "Cu": 0.01, "Fe": 0.07, "Mn": 0.04, "Mo": 0.004, "Zn": 0.025, "img": "https://yaraurl.net/ohc8" },
+		"YaraTeraKristalonBlueLabel": { "name": "YaraTera KRISTALON 19-6-20 BLUE LABEL", "manufacturer": "Yara", "market": "UA,RU", "desc": "", "NO3": 11.9, "NH4": 7.1, "P2O5": 6, "K2O": 20, "Mg": 1.9, "S": 3, "B": 0.025, "Cu": 0.01, "Fe": 0.07, "Mn": 0.04, "Mo": 0.004, "Zn": 0.025, "img": "https://yaraurl.net/7ext" },
+		"YaraTeraKristalonBlue": { "name": "YaraTera KRISTALON 17-6-18 BLUE", "manufacturer": "Yara", "market": "UA,RU", "desc": "", "ph01": 4.2, "NO3": 8, "NH4": 9, "P2O5": 6, "K2O": 18, "Mg": 1.2, "S": 8, "B": 0.025, "Cu": 0.01, "Fe": 0.07, "Mn": 0.04, "Mo": 0.004, "Zn": 0.025, "img": "https://yaraurl.net/rb2i" },
+		"YaraTeraKristaBrown": { "name": "YaraTera KRISTALON 3-11-38 BROWN", "manufacturer": "Yara", "market": "UA,RU", "desc": "", "ph01": 4.1, "NO3": 3, "P2O5": 11, "K2O": 38, "Mg": 2.4, "S": 11, "B": 0.025, "Cu": 0.01, "Fe": 0.07, "Mn": 0.04, "Mo": 0.004, "Zn": 0.025, "img": "https://yaraurl.net/qpnl" },
+		"YaraTeraKristaOrange": { "name": "YaraTera KRISTALON 6-12-36 ORANGE", "manufacturer": "Yara", "market": "UA,RU", "desc": "", "ph01": 4.2, "NO3": 4.5, "NH4": 1.5, "P2O5": 12, "K2O": 36, "Mg": 1.8, "S": 8, "B": 0.025, "Cu": 0.01, "Fe": 0.07, "Mn": 0.04, "Mo": 0.004, "Zn": 0.025, "img": "https://yaraurl.net/m243" },
+		"YaraTera KRISTALON 7,5-12-36 (SCARLET)" : { "name": "YaraTera KRISTALON 7,5-12-36 (SCARLET)", "NH4": 0, "NO3": 7.5, "P": 5.24, "K": 29.89, "Mg": 2.8, "S": 4, "Fe": 0.15, "Zn": 0.027, "Cu": 0.04, "Mn": 0.06, "Mo": 0.004, "B": 0.027, "solublity25": 100, "img": "https://pr-agro.ru/wp-content/uploads/2020/11/pr-agro-kristalon-skarlet-75123645-me-25kg.jpg"},
+		"YaraTeraKristaRed": { "name": "YaraTera KRISTALON 12-12-36 RED", "manufacturer": "Yara", "market": "UA,RU", "desc": "", "ph01": 4.5, "NO3": 10.1, "K2O": 36, "NH4": 1.9, "P2O5": 12, "Mg": 0.6, "S": 1, "B": 0.025, "Cu": 0.01, "Fe": 0.07, "Mn": 0.04, "Mo": 0.004, "Zn": 0.025, "img": "https://yaraurl.net/nlvz" },
+		"YaraTeraKristaYellow": { "name": "YaraTera KRISTALON 13-40-13 YELLOW", "manufacturer": "Yara", "market": "UA,RU", "desc": "", "ph01": 4.3, "NO3": 4.4, "NH4": 8.6, "P2O5": 40, "K2O": 13, "B": 0.025, "Cu": 0.01, "Fe": 0.07, "Mn": 0.04, "Mo": 0.004, "Zn": 0.025, "img": "https://yaraurl.net/0mub" },
+		"YaraTeraKristaSpecial": { "name": "YaraTera KRISTALON SPECIAL 18-18-18 +3MgO +micro", "manufacturer": "Yara", "market": "UA,RU", "desc": "", "ph01": 4.3, "NO3": 4.9, "NH3": 3.3, "NH2": 9.8, "P2O5": 18, "K2O": 18, "MgO": 3, "SO3": 5, "B": 0.025, "Cu": 0.01, "Fe": 0.07, "Mn": 0.04, "Mo": 0.004, "Zn": 0.025, "img": "https://yaraurl.net/vsgg" },
+		"YaraTeraRexolinD12": { "name": "YaraTera Rexolin D12", "manufacturer": "Yara", "market": "UA,RU", "desc": "", "Fe": 11.6, "img": "https://s.brandmaster.com/s/40WeJ2" },
+		"YaraTeraRexolinQ40": { "name": "YaraTera Rexolin Q40", "manufacturer": "Yara", "market": "UA,RU", "desc": "", "Fe": 6, "img": "https://s.brandmaster.com/s/40WeJ2" },
+		"YaraTeraRexolinABC": { "name": "YaraTera Rexolin ABC", "manufacturer": "Yara", "market": "UA,RU", "desc": "", "Mg": 1.85, "B": 0.5, "Cu": 1.5, "Fe": 4, "Mn": 4, "Mo": 0.1, "Zn": 1.5, "img": "https://s.brandmaster.com/s/qrZEx2" },
+		"YaraTeraRexolinAPN": { "name": "YaraTera Rexolin APN", "manufacturer": "Yara", "market": "UA,RU", "desc": "", "B": 0.9, "Cu": 0.2, "Fe": 4, "Mn": 5.6, "Mo": 0.2, "Zn": 1.1, "img": "https://s.brandmaster.com/s/qrZEx2" },
+		"YaraVitaRexolinZn15": { "name": "YaraVita Rexolin Zn15", "manufacturer": "Yara", "market": "UA,RU", "desc": "", "Zn": 14.8, "img": "https://s.brandmaster.com/s/qrZEx2" },
+		"YaraVitaRexolinMn13": { "name": "YaraVita Rexolin Mn13", "manufacturer": "Yara", "market": "UA,RU", "desc": "", "Mn": 12.8, "img": "https://s.brandmaster.com/s/qrZEx2" },
+		"YaraVitaRexolinCu15": { "name": "YaraVita Rexolin Cu15", "manufacturer": "Yara", "market": "UA,RU", "desc": "", "Cu": 14.8, "img": "https://s.brandmaster.com/s/qrZEx2" },
+		"YaraKristalonCucumber": { "name": "Yara KRISTALON 14-11-31 CUCUMBER", "manufacturer": "Yara", "market": "UA,RU", "desc": "", "NO3": 7, "NH2": 7, "P2O5": 11, "K2O": 31, "Mg": 1.5, "S": 2, "B": 0.02, "Cu": 0.01, "Fe": 0.15, "Mn": 0.1, "Mo": 0.002, "Zn": 0.01, "img": "https://yaraurl.net/oxe2" },
+		"YaraFerticareHydro": { "name": "Yara FERTICARE HYDRO 6-14-30", "manufacturer": "Yara", "market": "UA,RU", "desc": "", "NO3": 6, "P2O5": 13.7, "K2O": 30.1, "Mg": 2.6, "S": 3.7, "B": 0.03, "Cu": 0.02, "Fe": 0.2, "Mn": 0.14, "Mo": 0.004, "Zn": 0.02, "img": "https://yaraurl.net/229f" },
+		"YaraFerticareKombi": { "name": "Yara FERTICARE KOMBI 1 14-11-25", "manufacturer": "Yara", "market": "UA,RU", "desc": "", "NO3": 6, "NH4": 2.8, "NH2": 5.2, "P2O5": 11.5, "K2O": 25.3, "Mg": 1.4, "S": 5.6, "B": 0.02, "Cu": 0.01, "Fe": 0.1, "Mn": 0.1, "Mo": 0.002, "Zn": 0.01, "img": "https://yaraurl.net/229f" },
+		"YaraMilaNPK161616": { "name": "YaraMila NPK 16-16-16", "manufacturer": "Yara", "market": "UA,RU", "desc": "", "NO3": 6.5, "NH4": 9.5, "P2O5": 16, "K2O": 16, "img": "https://yaraurl.net/3xrl" },
+		"YaraMilaNPK72028": { "name": "YaraMila NPK 7-20-28", "manufacturer": "Yara", "market": "UA,RU", "desc": "", "NO3": 0.9, "NH4": 6.1, "P2O5": 20, "K2O": 28, "Mg": 1.2, "S": 3, "B": 0.02, "Fe": 0.1, "Mn": 0.03, "Zn": 0.02, "img": "https://yaraurl.net/l8f5" },
+		"YaraMilaCROPCARE111121": { "name": "YaraMila CROPCARE 11-11-21", "manufacturer": "Yara", "market": "UA,RU", "desc": "", "NO3": 4.4, "NH4": 6.6, "P2O5": 10.5, "K2O": 21.2, "Mg": 1.6, "S": 10, "B": 0.05, "Cu": 0.03, "Fe": 0.08, "Mn": 0.25, "Zn": 0.04, "Mo": 0.002, "img": "https://yaraurl.net/rdvv" },
+		"YaraMilaNPK91225": { "name": "YaraMila NPK 9-12-25", "manufacturer": "Yara", "market": "UA,RU", "desc": "", "NO3": 2.6, "NH4": 6.4, "P2O5": 12, "K2O": 25, "Mg": 1.2, "S": 2.6, "B": 0.02, "img": "https://yaraurl.net/lwc" },
+		"YaraTeraTENSOCOCKTAIL": { "name": "YaraTera TENSO COCKTAIL", "manufacturer": "Yara", "market": "UA,RU", "desc": "", "Ca": 2.57, "B": 0.52, "Cu": 0.53, "Fe": 2.1, "Mn": 2.57, "Mo": 0.13, "Zn": 0.53, "img": "https://yaraurl.net/gjif" },
+		"YaraMilaComplex12118": { "name": "YaraMila COMPLEX 12-11-18", "manufacturer": "Yara", "market": "UA,RU", "desc": "", "NO3": 5, "NH4": 7, "P2O5": 11, "K2O": 18, "Mg": 1.6, "S": 8, "B": 0.015, "Fe": 0.2, "Mn": 0.02, "Zn": 0.02, "img": "https://yaraurl.net/pz23" },
+		"YaraZintrac": { "name": "YaraVita ZINTRAC 700", "manufacturer": "Yara", "market": "UA,RU", "desc": "", "NO3": 1, "Zn": 40, "img": "https://yaraurl.net/pz23" },
+		"YaraPGMix": { "name": "Yara PG Mix 12-14-25+2", "manufacturer": "Yara", "market": "UA,RU", "desc": "", "NO3": 7, "NH4": 5, "P2O5": 14, "Mg": 1.3, "K2O": 24, "S": 5.6, "img": "https://yaraurl.net/pz23" },
 		// Alventa
-		"AlventaMagplonK": { "name": "Alventa Magplon K", "desc": "", "NO3": 13.5, "K2O": 46, "img": "https://images.ua.prom.st/2347057834_w640_h640_2347057834.jpg" },
+		"AlventaMagplonK": { "name": "Alventa Magplon K", "manufacturer": "Alventa", "market": "UA,RU", "desc": "", "NO3": 13.5, "K2O": 46, "img": "https://images.ua.prom.st/2347057834_w640_h640_2347057834.jpg" },
 		// Valagro
-		"ValagroEDTA5SG": { "name": "Valagro EDTA 5 SG", "desc": "", "MgO": 5, "B": 0.5, "Cu": 1.5, "Fe": 4, "Mo": 0.1, "Mn": 4, "Zn": 1.5, "ph01": 4.5, "img": "https://images.ua.prom.st/2274611401_valagro-edta-5.jpg"},
-		"ValagroEDTAZn": { "name": "Valagro EDTA Zn", "desc": "", "Zn": 13, "img": "https://images.ua.prom.st/2274611401_valagro-edta-5.jpg"},
-		"ValagroEDTAMn": { "name": "Valagro EDTA Mn", "desc": "", "Mn": 13, "img": "https://images.ua.prom.st/2274611401_valagro-edta-5.jpg"},
-		"ValagroEDTAMo": { "name": "Valagro EDTA Mo", "desc": "", "Mo": 13, "img": "https://images.ua.prom.st/2274611401_valagro-edta-5.jpg"},
-		"ValagroMolibion": { "name": "Valagro Molibion", "desc": "", "Mo": 8, "img": "https://images.ua.prom.st/2274611401_valagro-edta-5.jpg"},
-		"ValagroEDTASB": { "name": "Valagro EDTA SB", "desc": "", "B": 0.65, "Cu": 0.27, "Fe": 8, "Mo": 0.2, "Zn": 0.6, "Mn": 3.3, "img": "https://images.ua.prom.st/2274611401_valagro-edta-5.jpg"},
+		"ValagroEDTA5SG": { "name": "Valagro EDTA 5 SG", "manufacturer": "Valagro", "market": "UA,RU", "desc": "", "MgO": 5, "B": 0.5, "Cu": 1.5, "Fe": 4, "Mo": 0.1, "Mn": 4, "Zn": 1.5, "ph01": 4.5, "img": "https://images.ua.prom.st/2274611401_valagro-edta-5.jpg"},
+		"ValagroEDTAZn": { "name": "Valagro EDTA Zn", "manufacturer": "Valagro", "market": "UA,RU", "desc": "", "Zn": 13, "img": "https://images.ua.prom.st/2274611401_valagro-edta-5.jpg"},
+		"ValagroEDTAMn": { "name": "Valagro EDTA Mn", "manufacturer": "Valagro", "market": "UA,RU", "desc": "", "Mn": 13, "img": "https://images.ua.prom.st/2274611401_valagro-edta-5.jpg"},
+		"ValagroEDTAMo": { "name": "Valagro EDTA Mo", "manufacturer": "Valagro", "market": "UA,RU", "desc": "", "Mo": 13, "img": "https://images.ua.prom.st/2274611401_valagro-edta-5.jpg"},
+		"ValagroMolibion": { "name": "Valagro Molibion", "manufacturer": "Valagro", "market": "UA,RU", "desc": "", "Mo": 8, "img": "https://images.ua.prom.st/2274611401_valagro-edta-5.jpg"},
+		"ValagroEDTASB": { "name": "Valagro EDTA SB", "manufacturer": "Valagro", "market": "UA,RU", "desc": "", "B": 0.65, "Cu": 0.27, "Fe": 8, "Mo": 0.2, "Zn": 0.6, "Mn": 3.3, "img": "https://images.ua.prom.st/2274611401_valagro-edta-5.jpg"},
 		// Partner-Profi
-		"ProfiEDTAZn": { "name": "Profi EDTA Zn 15%", "desc": "", "Zn": 15, "img": "https://partner-profi.eu/product/images/orig/7392Zn.jpg"},
-		"ProfiEDTAMn": { "name": "Profi EDTA Mn 13%", "desc": "", "Mn": 13, "img": "https://partner-profi.eu/product/images/orig/7392Zn.jpg"},
-		"ProfiEDTACu": { "name": "Profi EDTA Cu 15%", "desc": "", "Cu": 15, "img": "https://partner-profi.eu/product/images/orig/8205Cu.jpg"}
+		"ProfiEDTAZn": { "name": "Partner EDTA Zn 15%", "manufacturer": "Partner", "market": "UA,RU", "desc": "", "Zn": 15, "img": "https://partner-profi.eu/product/images/orig/7392Zn.jpg"},
+		"ProfiEDTAMn": { "name": "Partner EDTA Mn 13%", "manufacturer": "Partner", "market": "UA,RU", "desc": "", "Mn": 13, "img": "https://partner-profi.eu/product/images/orig/7392Zn.jpg"},
+		"ProfiEDTACu": { "name": "Partner EDTA Cu 15%", "manufacturer": "Partner", "market": "UA,RU", "desc": "", "Cu": 15, "img": "https://partner-profi.eu/product/images/orig/8205Cu.jpg"}
 	};
 
 	/**
@@ -439,29 +731,18 @@
 			cart[item] = getItem(item);
 			cart[item]['value'] = default__cart_mgl;
 			addCartRow(item, cart[item]);
-			recalculate();
 			addTableRow(item);
-			modifyTableRowTotals();
+			recalculate();
 		}
 	}
 
 	function switchCartItem(name, enabled) {
-		if (!enabled) {
-			cart[name]['__value'] = value;
-			cart[name]['value'] = 0;
-		} else {
-			cart[name]['value'] = cart[name]['__value'];
-			delete cart[name]['__value'];
-		}
 		recalculate();
-		modifyTableRowTotals();
 	}
 
 	function editCartItem(name) {
 		cart[name]['value'] = parseFloat(getEl(getCartInputIdByName(name)).value);
 		recalculate();
-		modifyTableRow(name);
-		modifyTableRowTotals();
 	}
 
 	function isInCart(item) {
@@ -474,7 +755,6 @@
 			removeCartRow(item);
 			recalculate();
 			removeTableRow(item);
-			modifyTableRowTotals();
 		}
 	}
 
@@ -498,11 +778,6 @@
 		return parseFloat(elements[element]['atomic']);
 	}
 
-	// @todo
-	function getIons(element) {
-
-	}
-
 	function getItem(item) {
 		if (fertilizers[item] !== undefined) {
 			return Object.assign({}, fertilizers[item]);
@@ -514,12 +789,8 @@
 		return (elements[element]['is_hidden'] === undefined || elements[element]['is_hidden'] === false);
 	}
 
-	function isCharged(element) {
-		return elements[element]['charge'] !== undefined;
-	}
-
 	function getElementMeqRatio(element) {
-		if (!isCharged(element)) {
+		if (elements[element]['charge'] === undefined) {
 			return 0;
 		}
 
@@ -530,18 +801,12 @@
 		return fertilizers[name][element_name];
 	}
 
+	// @todo nahui eto
 	function getMolar(element, raw_value, force) {
 		if (const__molar || force) {
 			return parseFloat(raw_value) / getAtomic(element);
 		}
 		return parseFloat(raw_value);
-	}
-
-	function getScalar(element, molar_value) {
-		if (const__molar) {
-			return parseFloat(molar_value) * getAtomic(element);
-		}
-		return parseFloat(molar_value);
 	}
 
 	function roundDecimals(raw) {
@@ -564,10 +829,6 @@
 		return document.getElementById(id);
 	}
 
-	function getElValue(id) {
-		return getEl(id).value;
-	}
-
 	function _createCellDiv(cell_class, cell_innerHTML, cell_id) {
 		let div = document.createElement('div');
 		div.className = `divTableCell ${cell_class}`;
@@ -582,20 +843,59 @@
 
 	function _getDeviationPct(element) {
 		let expectation = _getExpectationValue(element);
-		return Math.min(100, Math.abs(calculations['__deviations'][element] / (expectation / 100)));
+		return Math.min(100, Math.abs(_getUnitValue(element, calculations['__deviations'][element]) / (expectation / 100)));
 	}
 
 	function _getExpectationValue(element) {
-		return getScalar(
+		return _getUnitValue(
 				element,
-				parseFloat(
-						getElValue(
-								getTableExpectedInputIdByName(element)
-						)
-				)
+				_getTargetElementValue(element)
 		);
 	}
 
+	function _getUnitValue(element, value, element_units) {
+		if (element_units === undefined) {
+			element_units = units_current[_getElementClass(element)];
+		}
+
+		switch (element_units) {
+			case 'mmol':
+				value = parseFloat(value) / getAtomic(element);
+				break;
+			case 'umol':
+				value = (parseFloat(value) / getAtomic(element)) * 1000;
+				break;
+			case 'mcg':
+				value = parseFloat(value) * 1000;
+				break;
+		}
+
+		return value;
+	}
+
+	function _getPpmValue(element, value, element_units) {
+		if (element_units === undefined) {
+			element_units = units_current[_getElementClass(element)];
+		}
+
+		switch (element_units) {
+			case 'mmol':
+				value = parseFloat(value) * getAtomic(element);
+				break;
+			case 'umol':
+				value = (parseFloat(value) * getAtomic(element)) / 1000;
+				break;
+			case 'mcg':
+				value = parseFloat(value) / 1000;
+				break;
+		}
+
+		return parseFloat(value);
+	}
+
+	function _getElementClass(element) {
+		return elements[element]['class'];
+	}
 
 
 
@@ -604,7 +904,7 @@
 	 */
 	function recalculate() {
 		calculations = {
-			'__totals': {},
+			'__totals': {'ec_ionic': 0},
 			'__deviations': {},
 			'__ionic': {}
 		};
@@ -650,8 +950,14 @@
 
 		calculations['__totals']['ec'] = 0.095 * (calculations['__totals']["NH4"] / 14.0067 + 2 * calculations['__totals']["Ca"] / 40.078 + 2 * calculations['__totals']["Mg"] / 24.305 + calculations['__totals']["K"] / 39.0983) + 0.19;
 		calculations['__totals']['npk'] = nNorm.toFixed(2) + ':' + pNorm.toFixed(2) + ':' + kNorm.toFixed(2);
-		calculations['__totals']['nk'] = nkNnorm.toFixed(2) + ':' + nkKnorm.toFixed(2);
-		calculations['__totals']['kcamg'] = kcamgKnorm.toFixed(2) + ':' + kcamgCanorm.toFixed(2) + ':' + kcamgMgnorm.toFixed(2);
+
+		calculations['__totals']['nk'] = {};
+		calculations['__totals']['nk']['n'] = nkNnorm.toFixed(2);
+		calculations['__totals']['nk']['k'] = nkKnorm.toFixed(2);
+		calculations['__totals']['kcamg'] = {};
+		calculations['__totals']['kcamg']['k'] = kcamgKnorm.toFixed(2);
+		calculations['__totals']['kcamg']['ca'] = kcamgCanorm.toFixed(2);
+		calculations['__totals']['kcamg']['mg'] = kcamgMgnorm.toFixed(2);
 	}
 
 	function _calculateDeviations() {
@@ -661,7 +967,7 @@
 			}
 
 			let deviation = 0;
-			let expectation = _getExpectationValue(element);
+			let expectation = _getTargetElementValue(element);
 
 			if (expectation === 0) {
 				return;
@@ -682,7 +988,12 @@
 			}
 
 			calculations['__ionic'][element] = meq_ratio * calculations['__totals'][element];
-			calculations['__ionic']['__total'] = calculations['__ionic']['__total'] + calculations['__ionic'][element];
+
+			if (calculations['__ionic'][element] > 0) {
+				calculations['__totals']['ec_ionic'] = calculations['__totals']['ec_ionic'] + (calculations['__ionic'][element] / 10);
+			}
+			calculations['__ionic'][element] = meq_ratio * calculations['__totals'][element];
+			calculations['__ionic']['__total'] = roundDecimals(calculations['__ionic']['__total'] + roundDecimals(calculations['__ionic'][element]));
 		});
 
 	}
@@ -700,9 +1011,11 @@
 	 */
 	function _onAfterCalculationsCompleted() {
 		_updateIonicBalanceTotal();
-		updateDeviationsBar();
+		_updateDeviationsBar();
+		_updateTableRowLines();
+		_updateTableRowTotals();
+		_updateGraphs();
 	}
-
 
 
 
@@ -741,14 +1054,15 @@
 	}
 
 	function initExpectedInputs() {
-		Object.keys(elements).forEach(function (key) {
-			if (elements[key]['is_hidden'] !== undefined) {
+		Object.keys(elements).forEach(function (element) {
+			targets[element] = 0;
+			if (elements[element]['is_hidden'] !== undefined) {
 				return;
 			}
 
 			let div = _createCellDiv(
-				elements[key]['class'],
-				_getTemplateTableExpectedCell(key)
+				elements[element]['class'],
+				_getTemplateTableExpectedCell(element)
 			);
 			getEl(getTableRowId('expected')).appendChild(div);
 		});
@@ -803,41 +1117,110 @@
 		if (getEl(getTableRowId(name)) !== null) {
 			return;
 		}
-  		var div = document.createElement('div');
+  		let div = document.createElement('div');
   		div.className = 'divTableRow minifo';
   		if (getCartItemsCount() === 1) {
   			div.className = div.className + ' separ';
   		}
   		div.id = getTableRowId(name);
 		div.innerHTML = getTableRowInnerHTMLByData(name);
-		getEl('main_table').appendChild(div);
+		getEl('secondary_table').appendChild(div);
 	}
 
 	function removeTableRow(name) {
 		if (getEl(getTableRowId(name)) === null) {
 			return;
 		}
-		getEl('main_table').removeChild(getEl(getTableRowId(name)));
+		getEl('secondary_table').removeChild(getEl(getTableRowId(name)));
 	}
 
 	function modifyTableRow(name) {
 		getEl(getTableRowId(name)).innerHTML = getTableRowInnerHTMLByData(name);
 	}
 
+	function _updateTableRowLines() {
+		Object.keys(cart).forEach(function(name) {
+			modifyTableRow(name);
+		});
+	}
+
 	// @todo refactor
-	function modifyTableRowTotals() {
+	function _updateTableRowTotals() {
 		let template = Object.assign({'name': 'Текущий'}, getCalculatedValuesForItem('__totals'));
 		Object.keys(elements).forEach(function (element) {
-			template[element] = roundDecimals(getMolar(element, getCalculatedValuesForItem('__totals')[element]));
+			template[element] = roundDecimals(_getUnitValue(element, getCalculatedValuesForItem('__totals')[element]));
 		});
 		getEl(getTableRowId('current')).innerHTML = getTableRowInnerHTMLByDataTemplate(template);
-		getEl(getTableRowId('ec')).innerHTML = 'EC = ' + calculations['__totals']['ec'].toFixed(2) + ', N:P:K = ' + calculations['__totals']['npk'] + ', N:K = ' + calculations['__totals']['nk'] + ', K:Ca:Mg = ' + calculations['__totals']['kcamg'] + ', Ionic Balance = ' + calculations['__ionic']['__total'];
+		getEl(getTableRowId('ec')).innerHTML = 'EC = ' + calculations['__totals']['ec'].toFixed(2) + ', N:P:K = ' + calculations['__totals']['npk'];
+	}
+
+	function _updateGraphs() {
+		let ec_scale = 0.02;
+		let kcamg_scale = 0.05;
+		let nk_scale = 0.023333333;
+
+		let ec = calculations['__totals']['ec'].toFixed(2);
+		let kcamg_k = calculations['__totals']['kcamg']['k'];
+		let kcamg_ca = calculations['__totals']['kcamg']['ca'];
+		let kcamg_mg = calculations['__totals']['kcamg']['mg'];
+		let nk_n = calculations['__totals']['nk']['n'];
+		let nk_k = calculations['__totals']['nk']['k'];
+
+		getEl('graphs_ec_value').innerText = ec;
+		getEl('graphs_ec_value').style.bottom = roundDecimals(ec / ec_scale) + 'px';
+		getEl('graphs_ec_bar_value').style.height = roundDecimals(ec / ec_scale) + 'px';
+
+		getEl('graphs_kcamg_k_value').innerText = kcamg_k;
+		getEl('graphs_kcamg_k_value').style.bottom = (roundDecimals(kcamg_k / kcamg_scale) - 20) + 'px';
+		getEl('graphs_kcamg_k_bar_value').style.height = roundDecimals(kcamg_k / kcamg_scale) + 'px';
+
+		getEl('graphs_kcamg_ca_value').innerText = kcamg_ca;
+		getEl('graphs_kcamg_ca_value').style.bottom = (roundDecimals(kcamg_ca / kcamg_scale) - 20) + 'px';
+		getEl('graphs_kcamg_ca_bar_value').style.height = roundDecimals(kcamg_ca / kcamg_scale) + 'px';
+
+		getEl('graphs_kcamg_mg_value').innerText = kcamg_mg;
+		getEl('graphs_kcamg_mg_value').style.bottom = (roundDecimals(kcamg_mg / kcamg_scale) - 20) + 'px';
+		getEl('graphs_kcamg_mg_bar_value').style.height = roundDecimals(kcamg_mg / kcamg_scale) + 'px';
+
+		getEl('graphs_nk_n_value').innerText = nk_n;
+		getEl('graphs_nk_n_value').style.bottom = (roundDecimals(nk_n / nk_scale) - 20) + 'px';
+		getEl('graphs_nk_n_bar_value').style.height = roundDecimals(nk_n / nk_scale) + 'px';
+
+		getEl('graphs_nk_k_value').innerText = nk_k;
+		getEl('graphs_nk_k_value').style.bottom = (roundDecimals(nk_k / nk_scale) - 20) + 'px';
+		getEl('graphs_nk_k_bar_value').style.height = roundDecimals(nk_k / nk_scale) + 'px';
+	}
+
+	function _updateDeviationsBar() {
+		Object.keys(elements).forEach(function(element) {
+			if (!isElementVisible(element)) {
+				return;
+			}
+
+			getEl(getTableRowBarIdByName(element, 'left')).style['width'] = '0';
+			getEl(getTableRowBarIdByName(element, 'right')).style['width'] = '0';
+			getEl(getTableRowBarIdByName(element, 'value')).innerText = '0';
+
+			let deviation_pct = _getDeviationPct(element);
+			let deviation_value = roundDecimals(_getUnitValue(element, calculations['__deviations'][element]))
+			if (deviation_value > 0) {
+				deviation_value = `+${deviation_value}`;
+			} else if (isNaN(deviation_value)) {
+				deviation_value = '0';
+			}
+			if (calculations['__deviations'][element] < 0) {
+				getEl(getTableRowBarIdByName(element, 'left')).style['width'] = `${deviation_pct}%`;
+			} else if (calculations['__deviations'][element] > 0) {
+				getEl(getTableRowBarIdByName(element, 'right')).style['width'] = `${deviation_pct}%`;
+			}
+			getEl(getTableRowBarIdByName(element, 'value')).innerText = deviation_value;
+		});
 	}
 
 	function getTableRowInnerHTMLByData(name) {
 		cart_item = Object.assign({}, getCalculatedValuesForItem(name));
 		Object.keys(elements).forEach(function (element) {
-			cart_item[element] = roundDecimals(getMolar(element, getCalculatedValuesForItem(name)[element]));
+			cart_item[element] = roundDecimals(_getUnitValue(element, getCalculatedValuesForItem(name)[element]));
 		});
 		return getTableRowInnerHTMLByDataTemplate(cart_item);
 	}
@@ -846,8 +1229,8 @@
 	function getTableRowInnerHTMLByDataTemplate(template) {
 		return `
 				<div class="divTableCell first fertitle">${template.name}</div>
-				<div class="divTableCell subproduct">${template.NO3 || 0}</div>
-				<div class="divTableCell subproduct">${template.NH4 || 0}</div>
+				<div class="divTableCell macro">${template.NO3 || 0}</div>
+				<div class="divTableCell macro">${template.NH4 || 0}</div>
 				<div class="divTableCell macro">${template.N || 0}</div>
 				<div class="divTableCell macro">${template.P || 0}</div>
 				<div class="divTableCell macro">${template.K || 0}</div>
@@ -862,32 +1245,6 @@
 				<div class="divTableCell micro">${template.Mo || 0}</div>
 				<div class="divTableCell micro">${template.Cl || 0}</div>
 			`;
-	}
-
-	function updateDeviationsBar() {
-		Object.keys(elements).forEach(function(element) {
-			if (!isElementVisible(element)) {
-				return;
-			}
-
-			getEl(getTableRowBarIdByName(element, 'left')).style['width'] = '0';
-			getEl(getTableRowBarIdByName(element, 'right')).style['width'] = '0';
-			getEl(getTableRowBarIdByName(element, 'value')).innerText = '0';
-
-			let deviation_pct = _getDeviationPct(element);
-			let deviation_value = roundDecimals(getMolar(element, calculations['__deviations'][element]))
-			if (deviation_value > 0) {
-				deviation_value = `+${deviation_value}`;
-			} else if (isNaN(deviation_value)) {
-				deviation_value = '0';
-			}
-			if (calculations['__deviations'][element] < 0) {
-				getEl(getTableRowBarIdByName(element, 'left')).style['width'] = `${deviation_pct}%`;
-			} else if (calculations['__deviations'][element] > 0) {
-				getEl(getTableRowBarIdByName(element, 'right')).style['width'] = `${deviation_pct}%`;
-			}
-			getEl(getTableRowBarIdByName(element, 'value')).innerText = deviation_value;
-		});
 	}
 
 
@@ -916,12 +1273,14 @@
 			return;
 		}
 		let div = document.createElement('div');
-		div.className = 'divTableRow';
+		div.className = 'divTableCartRow';
 		div.id = getCartIdByName(name);
 		div.innerHTML = `
-				<div class="divTableCell first chosen-delete"><input class="delete" type="button" value="удалить" onclick='removeFromCart("${name}")'/> <input class="point" type="checkbox" checked="1" onclick="switchCartItem('${name}', this.checked)"/></div>
-				<div class="divTableCell chosen-amounter"><input type="button" class="point" value="-" onclick="decreaseCartItem('${name}')"/><input id="cart_row_value__${name}" type="text" onchange="editCartItem('${name}')" class="chosen-amount" placeholder="0" value="0"/><input type="button" class="point" value="+" onclick="increaseCartItem('${name}')"/> мг/л</div>
-				<div class="divTableCell chosen-title">${cart_item.name}<br/><span>${cart_item.longDesc}</span></div>
+			<div class="divTableCell chosen-amounter">
+				<input class="delete cartline chosen-remove" type="button" value="✖️" onclick='removeFromCart("${name}")'/><input type="text" id="${getCartInputIdByName(name)}" class="chosen-amount chosen-value" placeholder="0" value="0"  onchange="editCartItem('${name}')"/><input type="text" disabled class="chosen-amount chosen-mgl" value="мг/л"/><input type="button" class="point cartline chosen-minus" value="➖" onclick="decreaseCartItem('${name}')"/><input type="button" class="point cartline chosen-plus" value="➕"  onclick="increaseCartItem('${name}')"/>
+			</div>
+			<div class="divTableCartImage"><img class="chosen-image" src="${cart_item.img}" alt="${cart_item.name}"/></div>
+			<div class="divTableCell chosen-title"><div class="chosen-titlebar">${cart_item.name}<br/><span>${cart_item.longDesc}</span></div></div>
 			`;
 		getEl('cart_table').appendChild(div);
 	}
@@ -934,6 +1293,118 @@
 	}
 
 
+	/**
+	 *
+	 */
+	function changeExpectedInput(entity) {
+		let element = entity.getAttribute('data-element');
+		setTargetElementValue(element, entity.value);
+	}
+
+	function setTargetElementValue(element, value) {
+		targets[element] = _getPpmValue(element, value);
+		recalculate();
+	}
+
+	function _getTargetElementValue(element) {
+		return targets[element];
+	}
+
+
+	/**
+	 * FRONTEND COMMON ACTIONS
+	 */
+	function switchTableTotals(entity) {
+		let table = document.querySelector('[id=secondary_table]');
+		let current = entity.getAttribute('data-hidden');
+		if (current === 'hidden') {
+			table.style.display = 'table-row-group';
+			entity.setAttribute('data-hidden', 'visible');
+			entity.innerHTML = '&#8673;';
+			entity.style.cursor = 'n-resize';
+		} else {
+			table.style.display = 'none';
+			entity.setAttribute('data-hidden', 'hidden');
+			entity.innerHTML = '&#8675;';
+			entity.style.cursor = 's-resize';
+		}
+	}
+
+	// @todo change arrow up/down with self
+	function toggle(self, element) {
+		if (element.style.display !== "none") {
+			element.style.display = "none";
+		} else {
+			element.style.removeProperty('display');
+		}
+	}
+
+	function _getNextUnit(element_class) {
+		let current = units_current[element_class];
+		let count = units_order[element_class].length;
+		let next_unit = units_order[element_class].indexOf(current) + 1;
+
+		if (next_unit > count - 1) {
+			next_unit = 0;
+		}
+
+		return units_order[element_class][next_unit];
+	}
+
+	function _setUnits(element_class, unit) {
+		units_current[element_class] = unit;
+	}
+
+	function switchUnits(entity, element_class) {
+		if (element_class === undefined) {
+			element_class = entity.getAttribute('data-element-class');
+		}
+
+		let next = _getNextUnit(element_class);
+		_setUnits(element_class, next);
+
+		document.querySelectorAll(`a[data-element-class="${element_class}"]`).forEach(function(entity) {
+			entity.innerText = next;
+		});
+
+		document.querySelectorAll(`input[data-element-class="${element_class}"]`).forEach(function(entity) {
+			let element = entity.getAttribute('data-element');
+			entity.value = roundDecimals(_getExpectationValue(element));
+		});
+
+		recalculate();
+	}
+
+	function switchCheckedState(entity) {
+		entity.setAttribute('data-checked', !entity.getAttribute('data-checked'));
+	}
+
+
+
+	/**
+	 * GRAPH
+	 *
+	 * Graph types:
+	 * - GRAPH_HORIZONTAL
+	 * - GRAPH_VERTICAL
+	 *
+	 * Graph inits:
+	 * { "range": [ -5, 5 ], "type": GRAPH_HORIZONTAL }
+	 *
+	 * Graph element types:
+	 * - GRAPH_ELEMENT_DEVIATION
+	 * - GRAPH_ELEMENT_BAR
+	 *
+	 * Graph element format:
+	 * [ { "type": "balance", "name": "Ca", "target": 5, "value": 3.3 } ]
+	 *
+	 */
+	function createGraph(inits, template) {
+		/*
+		* elements format:
+		* [ { "name": "Ca", "type": "balance"
+		*/
+	}
 
 
 	/**
@@ -960,7 +1431,7 @@
 	}
 
 	function _getTemplateTableExpectedCell(element) {
-		return `<input type="text" id="${getTableExpectedInputIdByName(element)}" placeholder="${default__expected_placeholder}"/>`;
+		return `<input type="text" class="default-input" id="${getTableExpectedInputIdByName(element)}" data-element="${element}" data-element-class="${_getElementClass(element)}" placeholder="${default__expected_placeholder}" onchange="changeExpectedInput(this)"/>`;
 	}
 
 
@@ -985,6 +1456,10 @@
 
 	function getCartInputIdByName(name) {
 		return `cart_row_value__${name}`;
+	}
+
+	function getCartInputCheckboxIdByName(name) {
+		return `cart_row_enabled__${name}`;
 	}
 
 	// @todo
