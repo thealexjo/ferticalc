@@ -4,7 +4,7 @@
 
 <head>
 	<title>Ferticalc v0.5 (04.03.2021)</title>
-	<style type="text/css">
+	<style>
 		/* --- TABLE --- */
 		.divTable{
 			display: table;
@@ -33,14 +33,14 @@
 
 		/* --- MAIN --- */
 		h2 {
-			font-family: Arial;
+			font-family: Arial, sans-serif;
 			font-size: 16pt;
 			margin: 0 16px;
 			padding-bottom: 10px;
 		}
 		body {
 			background-color: #EFEFEF;
-			font-family: Arial;
+			font-family: Arial, sans-serif;
 			font-size: 16pt;
 		}
 
@@ -177,7 +177,7 @@
 
 		.ratios-table { width: 540px !important; /*border: 0; */float: left; padding-bottom: 30px; border: 1px solid red; }
 		.chosen-table { width: 960px !important; border: 0; float: left; padding-bottom: 30px; }
-		.chosen-title { width: auto !important; text-align: left; border: 0; float: left; }
+		.chosen-title { width: 400px !important; text-align: left; border: 0; float: left; }
 		.chosen-titlebar {
 			margin-right: 5px;
 			padding-right: 15px;
@@ -333,7 +333,7 @@
 			<div class="divTableBody" id="cart_table">
 			</div>
 		</div>
-		<style type="text/css">
+		<style>
 			.graph-legend-left {
 				color: #bbb;
 				position: absolute;
@@ -423,10 +423,10 @@
 						<div class="graph-legend-line-h" style="bottom: 140px; width: 60px"></div>
 					</div>
 					<div style="position: absolute; bottom: 0; left: 15px; clear: both; z-index: 10">
-						<div class="graph-bar graph-color-ec-active" id="graphs_ec_bar_value" style="height: 100px;"></div>
+						<div class="graph-bar graph-color-ec-active" id="graphs_ec_bar_value" style="height: 0;"></div>
 <!--						<div class="graph-color-ec-pale" style="position:absolute; bottom:0; width: 30px; height: 100px;"></div>-->
 						<div class="graph-bar-legend">EC</div>
-						<div class="graph-bar-value graph-bar-value-blue" id="graphs_ec_value" style="position:relative; bottom: 100px; left: -10px;">2.2</div>
+						<div class="graph-bar-value graph-bar-value-blue" id="graphs_ec_value" style="position:relative; bottom: 100px; left: -10px;"></div>
 					</div>
 				</div>
 
@@ -451,18 +451,18 @@
 <!--					Values -->
 					<div style="position: absolute; bottom: 0; left: 30px; clear: both; z-index: 10">
 <!--						<div class="graph-color-kcamg-pale" style="position:absolute; bottom:0; width: 30px; height: 100px; background-color: #fcc1ff; color: #a950ae; opacity: 100%"></div>-->
-						<div class="graph-bar graph-color-kcamg-active" id="graphs_kcamg_k_bar_value" style="height: 100px;"></div>
-						<div class="graph-bar-value graph-bar-value-white" id="graphs_kcamg_k_value" style="bottom: 80px;">3.7</div>
+						<div class="graph-bar graph-color-kcamg-active" id="graphs_kcamg_k_bar_value" style="height: 0;"></div>
+						<div class="graph-bar-value graph-bar-value-white" id="graphs_kcamg_k_value" style="bottom: 80px;">0</div>
 						<div class="graph-bar-legend">K</div>
 					</div>
 					<div style="position: absolute; bottom: 0; left: 90px; clear: both; z-index: 10">
-						<div class="graph-bar graph-color-kcamg-active" id="graphs_kcamg_ca_bar_value" style="height: 60px;"></div>
-						<div class="graph-bar-value graph-bar-value-white" id="graphs_kcamg_ca_value" style="bottom: 40px;">3.7</div>
+						<div class="graph-bar graph-color-kcamg-active" id="graphs_kcamg_ca_bar_value" style="height: 0;"></div>
+						<div class="graph-bar-value graph-bar-value-white" id="graphs_kcamg_ca_value" style="bottom: 40px;">0</div>
 						<div class="graph-bar-legend">Ca</div>
 					</div>
 					<div style="position: absolute; bottom: 0; left: 150px; clear: both; z-index: 10">
-						<div class="graph-bar graph-color-kcamg-active" id="graphs_kcamg_mg_bar_value" style="height: 20px;"></div>
-						<div class="graph-bar-value graph-bar-value-white" id="graphs_kcamg_mg_value" style="bottom: 0;">3.7</div>
+						<div class="graph-bar graph-color-kcamg-active" id="graphs_kcamg_mg_bar_value" style="height: 0;"></div>
+						<div class="graph-bar-value graph-bar-value-white" id="graphs_kcamg_mg_value" style="bottom: 0;">0</div>
 						<div class="graph-bar-legend">Mg</div>
 					</div>
 				</div>
@@ -485,14 +485,14 @@
 					</div>
 					<div style="position: absolute; bottom: 0; left: 30px; clear: both; z-index: 10">
 <!--						<div class="graph-color-n-pale" style="position:absolute; bottom:0; width: 30px; height: 20px;"></div>-->
-						<div class="graph-bar graph-color-n-active" id="graphs_nk_n_bar_value" style="height: 20px;"></div>
-						<div class="graph-bar-value graph-bar-value-white" id="graphs_nk_n_value" style="bottom: 0px">3.7</div>
+						<div class="graph-bar graph-color-n-active" id="graphs_nk_n_bar_value" style="height: 0;"></div>
+						<div class="graph-bar-value graph-bar-value-white" id="graphs_nk_n_value" style="bottom: 0">0</div>
 						<div class="graph-bar-legend">N</div>
 					</div>
 					<div style="position: absolute; bottom: 0; left: 90px; clear: both; z-index: 10">
-						<div class="graph-bar graph-color-n-active" id="graphs_nk_k_bar_value" style="height: 60px;"></div>
+						<div class="graph-bar graph-color-n-active" id="graphs_nk_k_bar_value" style="height: 0;"></div>
 <!--						<div class="graph-color-n-pale" style="position:absolute; bottom:0; width: 30px; height: 20px;"></div>-->
-						<div class="graph-bar-value graph-bar-value-white" id="graphs_nk_k_value" style="bottom: 0px">3.7</div>
+						<div class="graph-bar-value graph-bar-value-white" id="graphs_nk_k_value" style="bottom: 0">0</div>
 						<div class="graph-bar-legend">K</div>
 					</div>
 				</div>
@@ -540,6 +540,8 @@
 		"SO4": { "S": 0.334 },
 		"MgO": { "Mg": 0.603 },
 	};
+
+	var hash = '';
 
 	var units = {
 		"mg": { "name": "mg", "text": "mg", "divider": 1 },
@@ -729,18 +731,34 @@
 	/**
 	 * CART ACTIONS
 	 */
-	function addToCart(item) {
+	function addToCart(item, value) {
+		if (value === undefined) value = default__cart_mgl;
 		if (!isInCart(item)) {
-			cart[item] = getItem(item);
-			cart[item]['value'] = default__cart_mgl;
+			cart[item] = {};
+			cart[item]['value'] = value;
 			addCartRow(item, cart[item]);
 			addTableRow(item);
 			recalculate();
 		}
 	}
 
-	function switchCartItem(name, enabled) {
+	function clearCart() {
+		cart = {};
+		clearCartRows();
 		recalculate();
+		clearTableRows();
+	}
+
+	function restoreCart(cart_json) {
+		//clearCart();
+		console.log(cart_json);
+		Object.keys(cart_json).forEach(function (element) {
+			addToCart(element, cart_json[element].value);
+		});
+	}
+
+	function isCartEmpty() {
+		return Object.keys(cart).length === 0;
 	}
 
 	function editCartItem(name) {
@@ -770,6 +788,45 @@
 			return 0;
 		}
 		return parseFloat(getEl(getCartInputIdByName(name)).value);
+	}
+
+
+	/**
+	 * URL UPDATER
+	 */
+	function _updateUrlHash() {
+		location.hash = hash;
+	}
+
+	function _updateHash() {
+		hash = _getHash();
+		_updateUrlHash();
+	}
+
+	function _getHash() {
+		return btoa(JSON.stringify(cart));
+	}
+
+	function _decodeHash(hash) {
+		let decoded_hash = {};
+
+		try {
+			decoded_hash = JSON.parse(atob(hash));
+		} catch (e) {}
+
+		return decoded_hash;
+	}
+
+	function hashChangeWatcher() {
+		let location_hash = location.hash.substr(1);
+		if (location_hash !== hash) {
+			let decoded_json = _decodeHash(location_hash);
+			if (Object.keys(decoded_json).length > 0) {
+				restoreCart(decoded_json);
+			} else {
+				console.log('ERROR_INVALID_HASH_PROVIDED');
+			}
+		}
 	}
 
 
@@ -812,8 +869,9 @@
 		return parseFloat(raw_value);
 	}
 
-	function roundDecimals(raw) {
-		return Math.round(raw * 1000) / 1000;
+	function roundDecimals(value, decimals) {
+		if (decimals === undefined) decimals = 2;
+		return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
 	}
 
 	function getCalculatedValuesForItem(name) {
@@ -1018,6 +1076,7 @@
 		_updateTableRowLines();
 		_updateTableRowTotals();
 		_updateGraphs();
+		_updateHash();
 	}
 
 
@@ -1137,6 +1196,10 @@
 		getEl('secondary_table').removeChild(getEl(getTableRowId(name)));
 	}
 
+	function clearTableRows() {
+		getEl('secondary_table').innerHTML = '';
+	}
+
 	function modifyTableRow(name) {
 		getEl(getTableRowId(name)).innerHTML = getTableRowInnerHTMLByData(name);
 	}
@@ -1154,7 +1217,6 @@
 			template[element] = roundDecimals(_getUnitValue(element, getCalculatedValuesForItem('__totals')[element]));
 		});
 		getEl(getTableRowId('current')).innerHTML = getTableRowInnerHTMLByDataTemplate(template);
-		getEl(getTableRowId('ec')).innerHTML = 'EC = ' + calculations['__totals']['ec'].toFixed(2) + ', N:P:K = ' + calculations['__totals']['npk'];
 	}
 
 	function _updateGraphs() {
@@ -1169,29 +1231,34 @@
 		let nk_n = calculations['__totals']['nk']['n'];
 		let nk_k = calculations['__totals']['nk']['k'];
 
-		getEl('graphs_ec_value').innerText = ec;
-		getEl('graphs_ec_value').style.bottom = roundDecimals(ec / ec_scale) + 'px';
-		getEl('graphs_ec_bar_value').style.height = roundDecimals(ec / ec_scale) + 'px';
+		if (isCartEmpty()) ec = '';
 
-		getEl('graphs_kcamg_k_value').innerText = kcamg_k;
-		getEl('graphs_kcamg_k_value').style.bottom = (roundDecimals(kcamg_k / kcamg_scale) - 20) + 'px';
-		getEl('graphs_kcamg_k_bar_value').style.height = roundDecimals(kcamg_k / kcamg_scale) + 'px';
+		if (isNaN(ec) || !isFinite(ec)) ec_scale = 0;
 
-		getEl('graphs_kcamg_ca_value').innerText = kcamg_ca;
-		getEl('graphs_kcamg_ca_value').style.bottom = (roundDecimals(kcamg_ca / kcamg_scale) - 20) + 'px';
-		getEl('graphs_kcamg_ca_bar_value').style.height = roundDecimals(kcamg_ca / kcamg_scale) + 'px';
+		if (isNaN(kcamg_k) || !isFinite(kcamg_k)) kcamg_k = 0;
+		if (isNaN(kcamg_ca) || !isFinite(kcamg_ca)) kcamg_ca = 0;
+		if (isNaN(kcamg_mg) || !isFinite(kcamg_mg)) kcamg_mg = 0;
 
-		getEl('graphs_kcamg_mg_value').innerText = kcamg_mg;
-		getEl('graphs_kcamg_mg_value').style.bottom = (roundDecimals(kcamg_mg / kcamg_scale) - 20) + 'px';
-		getEl('graphs_kcamg_mg_bar_value').style.height = roundDecimals(kcamg_mg / kcamg_scale) + 'px';
+		if (isNaN(nk_n) || !isFinite(nk_n)) nk_n = 0;
+		if (isNaN(nk_k) || !isFinite(nk_k)) nk_k = 0;
 
-		getEl('graphs_nk_n_value').innerText = nk_n;
-		getEl('graphs_nk_n_value').style.bottom = (roundDecimals(nk_n / nk_scale) - 20) + 'px';
-		getEl('graphs_nk_n_bar_value').style.height = roundDecimals(nk_n / nk_scale) + 'px';
+		_updateGraphsBar('graphs_ec_value', 'graphs_ec_bar_value', ec, ec_scale, 0, 2);
 
-		getEl('graphs_nk_k_value').innerText = nk_k;
-		getEl('graphs_nk_k_value').style.bottom = (roundDecimals(nk_k / nk_scale) - 20) + 'px';
-		getEl('graphs_nk_k_bar_value').style.height = roundDecimals(nk_k / nk_scale) + 'px';
+		_updateGraphsBar('graphs_kcamg_k_value', 'graphs_kcamg_k_bar_value', kcamg_k, kcamg_scale, 20);
+		_updateGraphsBar('graphs_kcamg_ca_value', 'graphs_kcamg_ca_bar_value', kcamg_ca, kcamg_scale, 20);
+		_updateGraphsBar('graphs_kcamg_mg_value', 'graphs_kcamg_mg_bar_value', kcamg_mg, kcamg_scale, 20);
+
+		_updateGraphsBar('graphs_nk_n_value', 'graphs_nk_n_bar_value', nk_n, nk_scale, 20);
+		_updateGraphsBar('graphs_nk_k_value', 'graphs_nk_k_bar_value', nk_k, nk_scale, 20);
+	}
+
+	function _updateGraphsBar(value_name, bar_name, value, scale, offset, decimals) {
+		let max_bar_height = 140;
+		if (decimals === undefined) decimals = 1;
+
+		getEl(value_name).innerText = roundDecimals(value, decimals).toFixed(decimals);
+		getEl(value_name).style.bottom = (Math.min(roundDecimals(value / scale), max_bar_height) - offset) + 'px';
+		getEl(bar_name).style.height = Math.min(roundDecimals(value / scale), max_bar_height) + 'px';
 	}
 
 	function _updateDeviationsBar() {
@@ -1271,16 +1338,18 @@
 		editCartItem(name);
 	}
 
-	function addCartRow(name, cart_item) {
+	function addCartRow(name) {
 		if (getEl(getCartIdByName(name)) !== null) {
 			return;
 		}
-		let div = document.createElement('div');
+		let div = document.createElement('div'),
+			cart_item = getItem(name)
+			cart_item_value = cart[name].value;
 		div.className = 'divTableCartRow';
 		div.id = getCartIdByName(name);
 		div.innerHTML = `
 			<div class="divTableCell chosen-amounter">
-				<input class="delete cartline chosen-remove" type="button" value="✖️" onclick='removeFromCart("${name}")'/><input type="text" id="${getCartInputIdByName(name)}" class="chosen-amount chosen-value" placeholder="0" value="0"  onchange="editCartItem('${name}')"/><input type="text" disabled class="chosen-amount chosen-mgl" value="мг/л"/><input type="button" class="point cartline chosen-minus" value="➖" onclick="decreaseCartItem('${name}')"/><input type="button" class="point cartline chosen-plus" value="➕"  onclick="increaseCartItem('${name}')"/>
+				<input class="delete cartline chosen-remove" type="button" value="✖️" onclick='removeFromCart("${name}")'/><input type="text" id="${getCartInputIdByName(name)}" class="chosen-amount chosen-value" placeholder="0" value="${cart_item_value}"  onchange="editCartItem('${name}')"/><input type="text" disabled class="chosen-amount chosen-mgl" value="мг/л"/><input type="button" class="point cartline chosen-minus" value="➖" onclick="decreaseCartItem('${name}')"/><input type="button" class="point cartline chosen-plus" value="➕"  onclick="increaseCartItem('${name}')"/>
 			</div>
 			<div class="divTableCartImage"><img class="chosen-image" src="${cart_item.img}" alt="${cart_item.name}"/></div>
 			<div class="divTableCell chosen-title"><div class="chosen-titlebar">${cart_item.name}<br/><span>${cart_item.longDesc}</span></div></div>
@@ -1293,6 +1362,10 @@
 			return;
 		}
 		getEl('cart_table').removeChild(getEl(getCartIdByName(name)));
+	}
+
+	function clearCartRows() {
+		getEl('cart_table').innerHTML = '';
 	}
 
 
@@ -1480,7 +1553,12 @@
 		initCatalog();
 		initTableBars();
 		initExpectedInputs();
+		hashChangeWatcher();
 	});
+
+	window.addEventListener('hashchange', function() {
+		hashChangeWatcher();
+	}, false);
 
 </script>
 </body>
