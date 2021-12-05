@@ -1084,7 +1084,6 @@
 			calculations['__ionic'][element] = meq_ratio * calculations['__totals'][element];
 			calculations['__ionic']['__total'] = roundDecimals(calculations['__ionic']['__total'] + roundDecimals(calculations['__ionic'][element]));
 		});
-
 	}
 
 	function _updateIonicBalanceTotal() {
@@ -1094,6 +1093,7 @@
 		});
 		calculations['__totals']['ionic_balance'] = ionic_balance;
 	}
+
 
 	/**
 	 * EVENT TO TRIGGER FRONTEND ACTIONS
@@ -1106,7 +1106,6 @@
 		_updateGraphs();
 		_updateHash();
 	}
-
 
 
 	/**
@@ -1260,22 +1259,17 @@
 		let nk_k = calculations['__totals']['nk']['k'];
 
 		if (isCartEmpty()) ec = '';
-
 		if (isNaN(ec) || !isFinite(ec)) ec_scale = 0;
-
 		if (isNaN(kcamg_k) || !isFinite(kcamg_k)) kcamg_k = 0;
 		if (isNaN(kcamg_ca) || !isFinite(kcamg_ca)) kcamg_ca = 0;
 		if (isNaN(kcamg_mg) || !isFinite(kcamg_mg)) kcamg_mg = 0;
-
 		if (isNaN(nk_n) || !isFinite(nk_n)) nk_n = 0;
 		if (isNaN(nk_k) || !isFinite(nk_k)) nk_k = 0;
 
 		_updateGraphsBar('graphs_ec_value', 'graphs_ec_bar_value', ec, ec_scale, 0, 2);
-
 		_updateGraphsBar('graphs_kcamg_k_value', 'graphs_kcamg_k_bar_value', kcamg_k, kcamg_scale, 20);
 		_updateGraphsBar('graphs_kcamg_ca_value', 'graphs_kcamg_ca_bar_value', kcamg_ca, kcamg_scale, 20);
 		_updateGraphsBar('graphs_kcamg_mg_value', 'graphs_kcamg_mg_bar_value', kcamg_mg, kcamg_scale, 20);
-
 		_updateGraphsBar('graphs_nk_n_value', 'graphs_nk_n_bar_value', nk_n, nk_scale, 20);
 		_updateGraphsBar('graphs_nk_k_value', 'graphs_nk_k_bar_value', nk_k, nk_scale, 20);
 	}
@@ -1283,8 +1277,9 @@
 	function _updateGraphsBar(value_name, bar_name, value, scale, offset, decimals) {
 		let max_bar_height = 140;
 		if (decimals === undefined) decimals = 1;
+		if (value !== '') value = roundDecimals(value, decimals).toFixed(decimals);
 
-		getEl(value_name).innerText = roundDecimals(value, decimals).toFixed(decimals);
+		getEl(value_name).innerText = value;
 		getEl(value_name).style.bottom = (Math.min(roundDecimals(value / scale), max_bar_height) - offset) + 'px';
 		getEl(bar_name).style.height = Math.min(roundDecimals(value / scale), max_bar_height) + 'px';
 	}
