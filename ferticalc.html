@@ -320,7 +320,7 @@
 			</div>
 			<div class="divTableBody" id="secondary_table"></div>
 		</div>
-		<div class="main-table-switcher" onclick="switchTableTotals(this);">&#8673;</div>
+		<div class="main-table-switcher" id="table-totals" onclick="switchTableTotals(this);">&#8673;</div>
 
 
 		<div class="spacer">&nbsp;</div>
@@ -726,6 +726,31 @@
 		"ProfiEDTACu": { "name": "Partner EDTA Cu 15%", "manufacturer": "Partner", "market": "UA,RU", "desc": "", "Cu": 15, "img": "images/partner/cu.jpg"},
 		// Простые соли
 		"BoricAcid": { "name": "Борная кислота, ЧДА, 17.5%", "manufacturer": "OEM", "market": "UA,RU", "desc": "", "B": 17.484, "img": "images/salts/boric-acid.jpeg"},
+		// Российский рынок
+		"Akvarin1": { name: "Акварин 1 (7:11:30 4 3)", desc: "", "NH4": 0, "NO3": 7, "P": 4.8, "K": 24.9045, "Mg": 2.412, "S": 3, "Fe": 0.054, "Zn": 0.014, "Cu": 0.01, "Mn": 0.042, "Mo": 0.004, "B": 0.02, "solublity25": 100,"img":  "https://pr-agro.ru/wp-content/uploads/2020/03/pr-agro-akvarin-1.jpg"},
+		"Akvarin3":{name: "Акварин 3 (3:11:35, хвойный)", desc: "", "NH4": 0, "NO3": 3, "P": 4.8, "K": 29.06, "Mg": 2.412, "S": 9, "Fe": 0.054, "Zn": 0.014, "Cu": 0.01, "Mn": 0.042, "Mo": 0.004, "B": 0.02, "solublity25": 100,"img":  "https://pr-agro.ru/wp-content/uploads/2020/03/pr-agro-akvarin-3.jpg"},
+		"Akvarin4":{name: "Акварин 4 (6:12:33, 3:7)", desc: "", "NH4": 1.5, "NO3": 4.5, "P": 5.23704, "K": 27.39495, "Mg": 1.809, "S": 7, "Fe": 0.054, "Zn": 0.014, "Cu": 0.01, "Mn": 0.042, "Mo": 0.004, "B": 0.02, "solublity25": 100,"img":  "https://pr-agro.ru/wp-content/uploads/2020/03/pr-agro-akvarin-4.jpg"},
+		"Akvarin6":{	name: "Акварин 6 (15:5:30 1.7 1.3)", desc: "", "NH4": 3.7, "NO3": 11.3, "P": 2.1821, "K": 24.9045, "Mg": 1.0251, "S": 1.3, "Fe": 0.054, "Zn": 0.014, "Cu": 0.01, "Mn": 0.042, "Mo": 0.004, "B": 0.02, "solublity25": 100,"img":  "https://pr-agro.ru/wp-content/uploads/2020/03/pr-agro-akvarin-6.jpg"},
+		"Akvarin7":{name: "Акварин 7 (13:5:25 2 8)", desc: "", "NH4": 6, "NO3": 7, "P": 2.1821, "K": 20.75375, "Mg": 1.206, "S": 8, "Fe": 0.054, "Zn": 0.014, "Cu": 0.01, "Mn": 0.042, "Mo": 0.004, "B": 0.02, "solublity25": 100,"img":  "https://pr-agro.ru/wp-content/uploads/2020/03/pr-agro-akvarin-7.jpg"},
+		"Akvarin8":{	name: "Акварин 8 (19:6:20 1.5 1.4)", desc: "", "NH4": 7.1, "NO3": 11.9, "P": 2.61852, "K": 16.603, "Mg": 0.9045, "S": 1.4, "Fe": 0.054, "Zn": 0.014, "Cu": 0.01, "Mn": 0.042, "Mo": 0.004, "B": 0.02, "solublity25": 100,"img":  "https://pr-agro.ru/wp-content/uploads/2020/03/pr-agro-akvarin-8.jpg"},
+		"Akvarin9":{name: "Акварин 9 (20:8:8 1.5 9)", desc: "", "NH4": 13.2, "NO3": 6.8, "P": 3.49136, "K": 6.6412, "Mg": 0.9045, "S": 9, "Fe": 0.054, "Zn": 0.014, "Cu": 0.01, "Mn": 0.042, "Mo": 0.004, "B": 0.02, "solublity25": 100,"img":  "https://pr-agro.ru/wp-content/uploads/2020/03/pr-agro-akvarin-9.jpg"},
+		"Akvarin10":{	name: "Акварин 10 (20:5:10, земляничный)", desc: "", "NH4": 0, "NO3": 20, "P": 2.18, "K": 8.3, "Mg": 0.9, "S": 8.4, "Fe": 0.054, "Zn": 0.014, "Cu": 0.01, "Mn": 0.042, "Mo": 0.004, "B": 0.02, "solublity25": 100,"img":  "https://pr-agro.ru/wp-content/uploads/2020/03/pr-agro-akvarin-10.jpg"},
+		"Akvarin11":{	name: "Акварин 11 (18:18:18)", desc: "", "NH4": 8, "NO3": 10, "P": 7.85556, "K": 14.9427, "Fe": 0.054, "Zn": 0.014, "Cu": 0.01, "Mn": 0.042, "Mo": 0.004, "B": 0.02, "solublity25": 100,"img":  "https://pr-agro.ru/wp-content/uploads/2020/03/pr-agro-akvarin-11.jpg"},
+		"Akvarin12":{	name: "Акварин 12 (12:12:35 1 0.7)", desc: "", "NH4": 2, "NO3": 10, "P": 5.23704, "K": 29.05525, "Mg": 0.603, "S": 0.7, "Fe": 0.054, "Zn": 0.014, "Cu": 0.01, "Mn": 0.042, "Mo": 0.004, "B": 0.02, "solublity25": 100,"img":  "https://pr-agro.ru/wp-content/uploads/2020/03/pr-agro-akvarin-12.jpg"},
+		"Akvarin13":{name: "Акварин 13 (13:41:13)", desc: "", "NH4": 8.6, "NO3": 4.4, "P": 17.89322, "K": 10.79195, "Fe": 0.054, "Zn": 0.014, "Cu": 0.01, "Mn": 0.042, "Mo": 0.004, "B": 0.02, "solublity25": 25,"img":  "https://pr-agro.ru/wp-content/uploads/2020/03/pr-agro-akvarin-13.jpg"},
+		"Akvarin14":{	name: "Акварин 14 (17:6:18 1.5 7)", desc: "", "NH4": 9, "NO3": 8, "P": 2.61852, "K": 14.9427, "Mg": 0.9045, "S": 7, "Fe": 0.054, "Zn": 0.014, "Cu": 0.01, "Mn": 0.042, "Mo": 0.004, "B": 0.02, "solublity25": 100,"img":  "https://pr-agro.ru/wp-content/uploads/2020/03/pr-agro-akvarin-14.jpg"},
+		"Akvarin15":{name: "Акварин 15 (3:11:38 3 9)", desc: "", "NH4": 0, "NO3": 3, "P": 4.8, "K": 31.5457, "Mg": 1.809, "S": 9, "Fe": 0.054, "Zn": 0.014, "Cu": 0.01, "Mn": 0.042, "Mo": 0.004, "B": 0.02, "solublity25": 100,"img":  "https://pr-agro.ru/wp-content/uploads/2020/03/pr-agro-akvarin-15.jpg"},
+		"Akvarin16":{name: "Акварин 16 (6:12:36 2 4)", desc: "", "NH4": 0, "NO3": 6, "P": 5.23704, "K": 29.8854, "Mg": 1.206, "S": 4, "Fe": 0.054, "Zn": 0.014, "Cu": 0.01, "Mn": 0.042, "Mo": 0.004, "B": 0.02, "solublity25": 100,"img":  "https://pr-agro.ru/wp-content/uploads/2020/03/pr-agro-akvarin-16.jpg"},
+		"CaNO3BuyMarkiA":{ name: "Кальций азотнокислый (буйский марка А)", "Ca": 19.3, "NO3": 14.9, "NH4": 0.7, "img": "https://buyskie.ru/fertilizer/nitrat-calsiya/i/nitratcalsiya-a.jpg" },
+		"CaCl2":{name: "Кальций хлористый (CaCl2 безводный), Ч", desc: "",	"Ca": 36.1115, "Cl": 63.8885, "solublity25": 100,"img":"https://opt6.ru/upload/iblock/8f1/8f15beb978c75a26ec48d043a6f2d765.jpg"},
+		"KNO3Clear":{ name: "Калий азотнокислый (KNO3), Ч", "K": 38.672, "NO3": 13.854, "solublity25": 36,"img":"https://im0-tub-ru.yandex.net/i?id=4cc72e2571c5bbdb420510461fc8e8d1&n=13" },
+		"KNO3Buy":{ name: "Калий азотнокислый (KNO3), буйский", desc: "", "K": 38.1869, "NO3": 13.6, "solublity25": 36, "img": "https://avatars.mds.yandex.net/get-mpic/4304169/img_id8871408001341111596.jpeg/13hq" },
+		"KH2PO4Clear":{ name: "Калий фосфорнокислый 2-замещенный (монофосфат, KH2PO4), Ч", "K": 28.731, "P": 22.761 },
+		"K2SO4Solupotasse":{ name: "Калиий сернокислый (Solupotasse, K2SO4)", "K": 42.2545218, "S": 18,"img": "https://pchelkinastrana.ru/wp-content/uploads/1000x1000.jpg"},
+		"MgSO47H2OClear":{ name: "Магний сернокислый семиводный (MgSO4*7H2O), Ч", "Mg": 9.861, "S": 13.01, "solublity25": 70 },
+		"MgNO326H2OClear":	{ name: "Магний азотнокислый шестиводный (Mg(NO3)2*6H2O), Ч", "Mg": 9.49, "NO3": 10.925, "solublity25": 70 },
+		"NH4NO3Clear":{ name: "Аммоний азотнокислый (NH4NO3), Ч", "NO3": 17.499, "NH4": 17.499, "solublity25": 70 },
+		"NH42SO4Buy":{ name: "Аммоний сернокислый ((NH4)2SO4, буйский)", "NH4": 21, "S": 24,"img":"https://pr-agro.ru/wp-content/uploads/2021/02/pr-agro-sulfat-ammoniya-50kg.jpg" },
 	};
 
 	/**
@@ -1560,6 +1585,7 @@
 		initTableBars();
 		initExpectedInputs();
 		hashChangeWatcher();
+		switchTableTotals(document.getElementById('table-totals'));
 	});
 
 	window.addEventListener('hashchange', function() {
