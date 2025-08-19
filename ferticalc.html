@@ -3,7 +3,7 @@
 <meta charset="utf-8">
 
 <head>
-	<title>Ferticalc v0.5 (04.03.2021)</title>
+	<title>Ferticalc v1.0 (17.08.2025)</title>
 	<style>
 		/* --- TABLE --- */
 		.divTable{
@@ -59,7 +59,7 @@
 
 		#main {
 			background-color: #FFF;
-			width: 1600px;
+			width: 1280px;
 			margin: 0 auto;
 			box-shadow: 0 0 1px rgba(0,0,0,0.5);
 			padding: 10px 5px;
@@ -253,7 +253,7 @@
 </head>
 <body>
 <div id="main">
-	<h2>Профиль</h2>
+	<h2>Профіль</h2>
 	<div id="table">
 		<div class="divTable">
 			<div class="divTableBody" id="main_table">
@@ -273,10 +273,10 @@
 					<div class="divTableCell micro">Cu</div>
 					<div class="divTableCell micro">Mn</div>
 					<div class="divTableCell micro">Mo</div>
-					<div class="divTableCell micro">Cl</div>
+					<!-- <div class="divTableCell micro">Cl</div> -->
 				</div>
 				<div class="divTableRow">
-					<div class="divTableCell first unit">на литр</div>
+					<div class="divTableCell first unit">на літр</div>
 					<div class="divTableCell macro unit"><a data-element-class="macro" href="#" onclick="switchUnits(this); return false;">mg</a></div>
 					<div class="divTableCell macro unit"><a data-element-class="macro" href="#" onclick="switchUnits(this); return false;">mg</a></div>
 					<div class="divTableCell macro unit"><a data-element-class="macro" href="#" onclick="switchUnits(this); return false;">mg</a></div>
@@ -291,13 +291,13 @@
 					<div class="divTableCell micro unit"><a data-element-class="micro" href="#" onclick="switchUnits(this); return false;">mg</a></div>
 					<div class="divTableCell micro unit"><a data-element-class="micro" href="#" onclick="switchUnits(this); return false;">mg</a></div>
 					<div class="divTableCell micro unit"><a data-element-class="micro" href="#" onclick="switchUnits(this); return false;">mg</a></div>
-					<div class="divTableCell micro unit"><a data-element-class="micro" href="#" onclick="switchUnits(this); return false;">mg</a></div>
+<!--					<div class="divTableCell micro unit"><a data-element-class="micro" href="#" onclick="switchUnits(this); return false;">mg</a></div>-->
 				</div>
 				<div class="divTableRow" id="table_row__expected" style="visibility: hidden">
-					<div class="divTableCell first">Целевой</div>
+					<div class="divTableCell first fertitle">Ціль</div>
 				</div>
 				<div class="divTableRow" id="table_row__current">
-					<div class="divTableCell first">Текущий</div>
+					<div class="divTableCell first">Поточний</div>
 					<div class="divTableCell macro">0</div>
 					<div class="divTableCell macro">0</div>
 					<div class="divTableCell macro">0</div>
@@ -311,8 +311,8 @@
 					<div class="divTableCell micro">0</div>
 					<div class="divTableCell micro">0</div>
 					<div class="divTableCell micro">0</div>
-					<div class="divTableCell micro">0</div>
-					<div class="divTableCell micro">0</div>
+					<!-- <div class="divTableCell micro">0</div> -->
+<!--					<div class="divTableCell micro">0</div>-->
 				</div>
 				<div class="divTableRow separator" id="table_row__bars" style="visibility: hidden">
 					<div class="divTableCell first">&nbsp;</div>
@@ -326,7 +326,7 @@
 		<div class="spacer">&nbsp;</div>
 
 
-		<h2>Выбранные</h2>
+		<h2>Обрані</h2>
 
 		<div id="table_row__ec"></div>
 		<div class="divTable chosen-table" style="float:left">
@@ -668,7 +668,8 @@
 			"unit": "umol",
 			"atomic": 35.453,
 			"ionic": -1,
-			"class": "micro"
+			"class": "micro",
+			"is_hidden": true
 		}
 	};
 	var fertilizers = {
@@ -694,7 +695,7 @@
 		"YaraTeraKristaSpecial": { "name": "YaraTera Kristalon SPECIAL 18-18-18 +3MgO +micro", "manufacturer": "Yara", "market": "UA,RU", "desc": "", "ph01": 4.3, "NO3": 4.9, "NH3": 3.3, "NH2": 9.8, "P2O5": 18, "K2O": 18, "MgO": 3, "SO3": 5, "B": 0.025, "Cu": 0.01, "Fe": 0.07, "Mn": 0.04, "Mo": 0.004, "Zn": 0.025, "img": "images/yara/kristalon-18-18-18.jpg" },
 		"YaraTeraRexolinD12": { "name": "YaraTera Rexolin D12", "manufacturer": "Yara", "market": "UA,RU", "desc": "", "Fe": 11.6, "img": "images/yara/rexolin-d12.jpg" },
 		// "YaraTeraRexolinQ40": { "name": "YaraTera Rexolin Q40", "manufacturer": "Yara", "market": "UA,RU", "desc": "", "Fe": 6, "img": "https://s.brandmaster.com/s/40WeJ2" },
-		"YaraTeraRexolinABC": { "name": "YaraTera Rexolin ABC", "manufacturer": "Yara", "market": "UA,RU", "desc": "", "Mg": 1.85, "B": 0.5, "Cu": 1.5, "Fe": 4, "Mn": 4, "Mo": 0.1, "Zn": 1.5, "img": "images/yara/rexolin-abc.jpg" },
+		"YaraTeraRexolinABC": { "name": "YaraTera Rexolin ABC", "manufacturer": "Yara", "market": "UA,RU", "desc": "", "Mg": 4, "B": 0.5, "Cu": 1.5, "Fe": 4, "Mn": 1.8, "Mo": 0.1, "Zn": 1.5, "img": "images/yara/rexolin-abc.jpg" },
 		"YaraTeraRexolinAPN": { "name": "YaraTera Rexolin APN", "manufacturer": "Yara", "market": "UA,RU", "desc": "", "B": 0.9, "Cu": 0.2, "Fe": 4, "Mn": 5.6, "Mo": 0.2, "Zn": 1.1, "img": "images/yara/rexolin-apn.jpg" },
 		// "YaraVitaRexolinZn15": { "name": "YaraVita Rexolin Zn15", "manufacturer": "Yara", "market": "UA,RU", "desc": "", "Zn": 14.8, "img": "https://s.brandmaster.com/s/qrZEx2" },
 		// "YaraVitaRexolinMn13": { "name": "YaraVita Rexolin Mn13", "manufacturer": "Yara", "market": "UA,RU", "desc": "", "Mn": 12.8, "img": "https://s.brandmaster.com/s/qrZEx2" },
@@ -711,46 +712,31 @@
 		// "YaraZintrac": { "name": "YaraVita ZINTRAC 700", "manufacturer": "Yara", "market": "UA,RU", "desc": "", "NO3": 1, "Zn": 40, "img": "https://yaraurl.net/pz23" },
 		// "YaraPGMix": { "name": "Yara PG Mix 12-14-25+2", "manufacturer": "Yara", "market": "UA,RU", "desc": "", "NO3": 7, "NH4": 5, "P2O5": 14, "Mg": 1.3, "K2O": 24, "S": 5.6, "img": "https://yaraurl.net/pz23" },
 		// Alventa
-		"AlventaMagplonK": { "name": "Alventa Magplon K", "manufacturer": "Alventa", "market": "UA,RU", "desc": "", "NO3": 13.5, "K2O": 46, "img": "images/alventa/magplon-k.jpg" },
+		// "AlventaMagplonK": { "name": "Alventa Magplon K", "manufacturer": "Alventa", "market": "UA,RU", "desc": "", "NO3": 13.5, "K2O": 46, "img": "images/alventa/magplon-k.jpg" },
 		// Valagro
-		"ValagroEDTA5SG": { "name": "Valagro EDTA 5 SG", "manufacturer": "Valagro", "market": "UA,RU", "desc": "", "MgO": 5, "B": 0.5, "Cu": 1.5, "Fe": 4, "Mo": 0.1, "Mn": 4, "Zn": 1.5, "ph01": 4.5, "img": "images/valagro/5sg.jpg"},
-		"ValagroEDTAZn": { "name": "Valagro EDTA Zn", "manufacturer": "Valagro", "market": "UA,RU", "desc": "", "Zn": 13, "img": "images/valagro/edta.png"},
-		"ValagroEDTAMn": { "name": "Valagro EDTA Mn", "manufacturer": "Valagro", "market": "UA,RU", "desc": "", "Mn": 13, "img": "images/valagro/edta.png"},
-		"ValagroEDTAMo": { "name": "Valagro EDTA Mo", "manufacturer": "Valagro", "market": "UA,RU", "desc": "", "Mo": 13, "img": "images/valagro/edta.png"},
-		"ValagroMolibion": { "name": "Valagro Molibion", "manufacturer": "Valagro", "market": "UA,RU", "desc": "", "Mo": 8, "img": "images/valagro/molibion.png"},
+		// "ValagroEDTA5SG": { "name": "Valagro EDTA 5 SG", "manufacturer": "Valagro", "market": "UA,RU", "desc": "", "MgO": 5, "B": 0.5, "Cu": 1.5, "Fe": 4, "Mo": 0.1, "Mn": 4, "Zn": 1.5, "ph01": 4.5, "img": "images/valagro/5sg.jpg"},
+		// "ValagroEDTAZn": { "name": "Valagro EDTA Zn", "manufacturer": "Valagro", "market": "UA,RU", "desc": "", "Zn": 13, "img": "images/valagro/edta.png"},
+		// "ValagroEDTAMn": { "name": "Valagro EDTA Mn", "manufacturer": "Valagro", "market": "UA,RU", "desc": "", "Mn": 13, "img": "images/valagro/edta.png"},
+		// "ValagroEDTAMo": { "name": "Valagro EDTA Mo", "manufacturer": "Valagro", "market": "UA,RU", "desc": "", "Mo": 13, "img": "images/valagro/edta.png"},
+		// "ValagroMolibion": { "name": "Valagro Molibion", "manufacturer": "Valagro", "market": "UA,RU", "desc": "", "Mo": 8, "img": "images/valagro/molibion.png"},
 		// "ValagroEDTASB": { "name": "Valagro EDTA SB", "manufacturer": "Valagro", "market": "UA,RU", "desc": "", "B": 0.65, "Cu": 0.27, "Fe": 8, "Mo": 0.2, "Zn": 0.6, "Mn": 3.3, "img": "https://images.ua.prom.st/2274611401_valagro-edta-5.jpg"},
-		"ValagroBoroplus": { "name": "Valagro Boroplus", "desc": "", "B": 11, "img": "images/valagro/boroplus.jpg"},
+		// "ValagroBoroplus": { "name": "Valagro Boroplus", "desc": "", "B": 11, "img": "images/valagro/boroplus.jpg"},
 		// Partner-Profi
-		"ProfiEDTAZn": { "name": "Partner EDTA Zn 15%", "manufacturer": "Partner", "market": "UA,RU", "desc": "", "Zn": 15, "img": "images/partner/zn.png"},
-		"ProfiEDTAMn": { "name": "Partner EDTA Mn 13%", "manufacturer": "Partner", "market": "UA,RU", "desc": "", "Mn": 13, "img": "images/partner/mn.jpg"},
-		"ProfiEDTACu": { "name": "Partner EDTA Cu 15%", "manufacturer": "Partner", "market": "UA,RU", "desc": "", "Cu": 15, "img": "images/partner/cu.jpg"},
-		// Простые соли
-		"BoricAcid": { "name": "Борная кислота, ЧДА, 17.5%", "manufacturer": "OEM", "market": "UA,RU", "desc": "", "B": 17.484, "img": "images/salts/boric-acid.jpeg"},
-		// Российский рынок
-		"Akvarin1": { name: "Акварин 1 (7:11:30 4 3)", desc: "", "NH4": 0, "NO3": 7, "P": 4.8, "K": 24.9045, "Mg": 2.412, "S": 3, "Fe": 0.054, "Zn": 0.014, "Cu": 0.01, "Mn": 0.042, "Mo": 0.004, "B": 0.02, "solublity25": 100,"img":  "https://pr-agro.ru/wp-content/uploads/2020/03/pr-agro-akvarin-1.jpg"},
-		"Akvarin3":{name: "Акварин 3 (3:11:35, хвойный)", desc: "", "NH4": 0, "NO3": 3, "P": 4.8, "K": 29.06, "Mg": 2.412, "S": 9, "Fe": 0.054, "Zn": 0.014, "Cu": 0.01, "Mn": 0.042, "Mo": 0.004, "B": 0.02, "solublity25": 100,"img":  "https://pr-agro.ru/wp-content/uploads/2020/03/pr-agro-akvarin-3.jpg"},
-		"Akvarin4":{name: "Акварин 4 (6:12:33, 3:7)", desc: "", "NH4": 1.5, "NO3": 4.5, "P": 5.23704, "K": 27.39495, "Mg": 1.809, "S": 7, "Fe": 0.054, "Zn": 0.014, "Cu": 0.01, "Mn": 0.042, "Mo": 0.004, "B": 0.02, "solublity25": 100,"img":  "https://pr-agro.ru/wp-content/uploads/2020/03/pr-agro-akvarin-4.jpg"},
-		"Akvarin6":{	name: "Акварин 6 (15:5:30 1.7 1.3)", desc: "", "NH4": 3.7, "NO3": 11.3, "P": 2.1821, "K": 24.9045, "Mg": 1.0251, "S": 1.3, "Fe": 0.054, "Zn": 0.014, "Cu": 0.01, "Mn": 0.042, "Mo": 0.004, "B": 0.02, "solublity25": 100,"img":  "https://pr-agro.ru/wp-content/uploads/2020/03/pr-agro-akvarin-6.jpg"},
-		"Akvarin7":{name: "Акварин 7 (13:5:25 2 8)", desc: "", "NH4": 6, "NO3": 7, "P": 2.1821, "K": 20.75375, "Mg": 1.206, "S": 8, "Fe": 0.054, "Zn": 0.014, "Cu": 0.01, "Mn": 0.042, "Mo": 0.004, "B": 0.02, "solublity25": 100,"img":  "https://pr-agro.ru/wp-content/uploads/2020/03/pr-agro-akvarin-7.jpg"},
-		"Akvarin8":{	name: "Акварин 8 (19:6:20 1.5 1.4)", desc: "", "NH4": 7.1, "NO3": 11.9, "P": 2.61852, "K": 16.603, "Mg": 0.9045, "S": 1.4, "Fe": 0.054, "Zn": 0.014, "Cu": 0.01, "Mn": 0.042, "Mo": 0.004, "B": 0.02, "solublity25": 100,"img":  "https://pr-agro.ru/wp-content/uploads/2020/03/pr-agro-akvarin-8.jpg"},
-		"Akvarin9":{name: "Акварин 9 (20:8:8 1.5 9)", desc: "", "NH4": 13.2, "NO3": 6.8, "P": 3.49136, "K": 6.6412, "Mg": 0.9045, "S": 9, "Fe": 0.054, "Zn": 0.014, "Cu": 0.01, "Mn": 0.042, "Mo": 0.004, "B": 0.02, "solublity25": 100,"img":  "https://pr-agro.ru/wp-content/uploads/2020/03/pr-agro-akvarin-9.jpg"},
-		"Akvarin10":{	name: "Акварин 10 (20:5:10, земляничный)", desc: "", "NH4": 0, "NO3": 20, "P": 2.18, "K": 8.3, "Mg": 0.9, "S": 8.4, "Fe": 0.054, "Zn": 0.014, "Cu": 0.01, "Mn": 0.042, "Mo": 0.004, "B": 0.02, "solublity25": 100,"img":  "https://pr-agro.ru/wp-content/uploads/2020/03/pr-agro-akvarin-10.jpg"},
-		"Akvarin11":{	name: "Акварин 11 (18:18:18)", desc: "", "NH4": 8, "NO3": 10, "P": 7.85556, "K": 14.9427, "Fe": 0.054, "Zn": 0.014, "Cu": 0.01, "Mn": 0.042, "Mo": 0.004, "B": 0.02, "solublity25": 100,"img":  "https://pr-agro.ru/wp-content/uploads/2020/03/pr-agro-akvarin-11.jpg"},
-		"Akvarin12":{	name: "Акварин 12 (12:12:35 1 0.7)", desc: "", "NH4": 2, "NO3": 10, "P": 5.23704, "K": 29.05525, "Mg": 0.603, "S": 0.7, "Fe": 0.054, "Zn": 0.014, "Cu": 0.01, "Mn": 0.042, "Mo": 0.004, "B": 0.02, "solublity25": 100,"img":  "https://pr-agro.ru/wp-content/uploads/2020/03/pr-agro-akvarin-12.jpg"},
-		"Akvarin13":{name: "Акварин 13 (13:41:13)", desc: "", "NH4": 8.6, "NO3": 4.4, "P": 17.89322, "K": 10.79195, "Fe": 0.054, "Zn": 0.014, "Cu": 0.01, "Mn": 0.042, "Mo": 0.004, "B": 0.02, "solublity25": 25,"img":  "https://pr-agro.ru/wp-content/uploads/2020/03/pr-agro-akvarin-13.jpg"},
-		"Akvarin14":{	name: "Акварин 14 (17:6:18 1.5 7)", desc: "", "NH4": 9, "NO3": 8, "P": 2.61852, "K": 14.9427, "Mg": 0.9045, "S": 7, "Fe": 0.054, "Zn": 0.014, "Cu": 0.01, "Mn": 0.042, "Mo": 0.004, "B": 0.02, "solublity25": 100,"img":  "https://pr-agro.ru/wp-content/uploads/2020/03/pr-agro-akvarin-14.jpg"},
-		"Akvarin15":{name: "Акварин 15 (3:11:38 3 9)", desc: "", "NH4": 0, "NO3": 3, "P": 4.8, "K": 31.5457, "Mg": 1.809, "S": 9, "Fe": 0.054, "Zn": 0.014, "Cu": 0.01, "Mn": 0.042, "Mo": 0.004, "B": 0.02, "solublity25": 100,"img":  "https://pr-agro.ru/wp-content/uploads/2020/03/pr-agro-akvarin-15.jpg"},
-		"Akvarin16":{name: "Акварин 16 (6:12:36 2 4)", desc: "", "NH4": 0, "NO3": 6, "P": 5.23704, "K": 29.8854, "Mg": 1.206, "S": 4, "Fe": 0.054, "Zn": 0.014, "Cu": 0.01, "Mn": 0.042, "Mo": 0.004, "B": 0.02, "solublity25": 100,"img":  "https://pr-agro.ru/wp-content/uploads/2020/03/pr-agro-akvarin-16.jpg"},
-		"CaNO3BuyMarkiA":{ name: "Кальций азотнокислый (буйский марка А)", "Ca": 19.3, "NO3": 14.9, "NH4": 0.7, "img": "https://buyskie.ru/fertilizer/nitrat-calsiya/i/nitratcalsiya-a.jpg" },
-		"CaCl2":{name: "Кальций хлористый (CaCl2 безводный), Ч", desc: "",	"Ca": 36.1115, "Cl": 63.8885, "solublity25": 100,"img":"https://opt6.ru/upload/iblock/8f1/8f15beb978c75a26ec48d043a6f2d765.jpg"},
-		"KNO3Clear":{ name: "Калий азотнокислый (KNO3), Ч", "K": 38.672, "NO3": 13.854, "solublity25": 36,"img":"https://im0-tub-ru.yandex.net/i?id=4cc72e2571c5bbdb420510461fc8e8d1&n=13" },
-		"KNO3Buy":{ name: "Калий азотнокислый (KNO3), буйский", desc: "", "K": 38.1869, "NO3": 13.6, "solublity25": 36, "img": "https://avatars.mds.yandex.net/get-mpic/4304169/img_id8871408001341111596.jpeg/13hq" },
-		"KH2PO4Clear":{ name: "Калий фосфорнокислый 2-замещенный (монофосфат, KH2PO4), Ч", "K": 28.731, "P": 22.761 },
-		"K2SO4Solupotasse":{ name: "Калиий сернокислый (Solupotasse, K2SO4)", "K": 42.2545218, "S": 18,"img": "https://pchelkinastrana.ru/wp-content/uploads/1000x1000.jpg"},
-		"MgSO47H2OClear":{ name: "Магний сернокислый семиводный (MgSO4*7H2O), Ч", "Mg": 9.861, "S": 13.01, "solublity25": 70 },
-		"MgNO326H2OClear":	{ name: "Магний азотнокислый шестиводный (Mg(NO3)2*6H2O), Ч", "Mg": 9.49, "NO3": 10.925, "solublity25": 70 },
-		"NH4NO3Clear":{ name: "Аммоний азотнокислый (NH4NO3), Ч", "NO3": 17.499, "NH4": 17.499, "solublity25": 70 },
-		"NH42SO4Buy":{ name: "Аммоний сернокислый ((NH4)2SO4, буйский)", "NH4": 21, "S": 24,"img":"https://pr-agro.ru/wp-content/uploads/2021/02/pr-agro-sulfat-ammoniya-50kg.jpg" },
+		// "ProfiEDTAZn": { "name": "Partner EDTA Zn 15%", "manufacturer": "Partner", "market": "UA,RU", "desc": "", "Zn": 15, "img": "images/partner/zn.png"},
+		// "ProfiEDTAMn": { "name": "Partner EDTA Mn 13%", "manufacturer": "Partner", "market": "UA,RU", "desc": "", "Mn": 13, "img": "images/partner/mn.jpg"},
+		// "ProfiEDTACu": { "name": "Partner EDTA Cu 15%", "manufacturer": "Partner", "market": "UA,RU", "desc": "", "Cu": 15, "img": "images/partner/cu.jpg"},
+		// Прості солі
+		// "BoricAcid": { "name": "Борна кислота, ЧДА, 17.5%", "manufacturer": "OEM", "market": "UA,RU", "desc": "", "B": 17.484, "img": "images/salts/boric-acid.jpeg"},
+		// "CaNO3BuyMarkiA":{ name: "Кальцій азотнокислий (буйський марка А)", "Ca": 19.3, "NO3": 14.9, "NH4": 0.7, "img": "https://buyskie.ru/fertilizer/nitrat-calsiya/i/nitratcalsiya-a.jpg" },
+		// "CaCl2":{name: "Кальцій хлористий (CaCl2 безводний), Ч", desc: "",	"Ca": 36.1115, "Cl": 63.8885, "solublity25": 100,"img":"https://opt6.ru/upload/iblock/8f1/8f15beb978c75a26ec48d043a6f2d765.jpg"},
+		// "KNO3Clear":{ name: "Калій азотнокислий (KNO3), Ч", "K": 38.672, "NO3": 13.854, "solublity25": 36,"img":"https://im0-tub-ru.yandex.net/i?id=4cc72e2571c5bbdb420510461fc8e8d1&n=13" },
+		// "KNO3Buy":{ name: "Калій азотнокислий (KNO3), буйський", desc: "", "K": 38.1869, "NO3": 13.6, "solublity25": 36, "img": "https://avatars.mds.yandex.net/get-mpic/4304169/img_id8871408001341111596.jpeg/13hq" },
+		// "KH2PO4Clear":{ name: "Калій фосфорнокислий 2-замещенный (монофосфат, KH2PO4), Ч", "K": 28.731, "P": 22.761 },
+		// "K2SO4Solupotasse":{ name: "Калій сірчанокислий (Solupotasse, K2SO4)", "K": 42.2545218, "S": 18,"img": "https://pchelkinastrana.ru/wp-content/uploads/1000x1000.jpg"},
+		// "MgSO47H2OClear":{ name: "Магний сірчанокислий семиводний (MgSO4*7H2O), Ч", "Mg": 9.861, "S": 13.01, "solublity25": 70 },
+		// "MgNO326H2OClear":	{ name: "Магний азотнокислий шестиводний (Mg(NO3)2*6H2O), Ч", "Mg": 9.49, "NO3": 10.925, "solublity25": 70 },
+		// "NH4NO3Clear":{ name: "Амоній азотнокислий (NH4NO3), Ч", "NO3": 17.499, "NH4": 17.499, "solublity25": 70 },
+		// "NH42SO4Buy":{ name: "Амоній сірчанокислий ((NH4)2SO4, буйський)", "NH4": 21, "S": 24,"img":"https://pr-agro.ru/wp-content/uploads/2021/02/pr-agro-sulfat-ammoniya-50kg.jpg" },
 	};
 
 	/**
@@ -1119,7 +1105,7 @@
 			div.innerHTML = `
 					<img src="${item.img}" alt=""/>
 					<div>${item.name}<br/><small>${item.longDesc}</small></div>
-					<input class="add" type="button" value="добавить" onclick="addToCart('${key}')"/>
+					<input class="add" type="button" value="додати" onclick="addToCart('${key}')"/>
 				`;
 			getEl('catalog').appendChild(div);
 		});
@@ -1198,7 +1184,6 @@
 	}
 
 
-
 	/**
 	 * TABLE FRONTEND ACTIONS
 	 */
@@ -1239,7 +1224,7 @@
 
 	// @todo refactor
 	function _updateTableRowTotals() {
-		let template = Object.assign({'name': 'Текущий'}, getCalculatedValuesForItem('__totals'));
+		let template = Object.assign({'name': 'Поточний'}, getCalculatedValuesForItem('__totals'));
 		Object.keys(elements).forEach(function (element) {
 			template[element] = roundDecimals(_getUnitValue(element, getCalculatedValuesForItem('__totals')[element]));
 		});
