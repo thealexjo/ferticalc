@@ -175,7 +175,7 @@
 		span { color: #aaa; }
 		input.chosen-amount { width: 55px; }
 
-		.ratios-table { width: 540px !important; /*border: 0; */float: left; padding-bottom: 30px; border: 1px solid red; }
+		.ratios-table { width: 100%; /*border: 0; */float: left; padding-bottom: 30px; border: 1px solid red; padding-left: 30px }
 		.chosen-table { width: 960px !important; border: 0; float: left; padding-bottom: 30px; }
 		.chosen-title { width: 400px !important; text-align: left; border: 0; float: left; }
 		.chosen-titlebar {
@@ -496,6 +496,56 @@
 						<div class="graph-bar-legend">K</div>
 					</div>
 				</div>
+
+				<div style="position: relative; width: 30px; float: left; clear: right">&nbsp;</div>
+
+				<div style="width: 120px; height: 150px; border-left: 1px solid #aaa; border-bottom: 1px solid #aaa; position: relative; float: left;">
+                    <div style="position: absolute; left: 0; bottom: 0; z-index: 1; color: #bbb">
+                        <div class="graph-legend-line-h" style="bottom: 15px; width:120px"></div>
+                        <div class="graph-legend-left" style="bottom: -20px">0.9</div>
+                        <div class="graph-legend-line-h" style="bottom: 30px; width:120px"></div>
+                        <div class="graph-legend-left" style="bottom: -5px">1.0</div>
+                        <div class="graph-legend-line-h" style="bottom: 45px; width:120px"></div>
+                        <div class="graph-legend-left" style="bottom: 10px">1.1</div>
+                        <div class="graph-legend-line-h" style="bottom: 60px; width:120px"></div>
+                        <div class="graph-legend-left" style="bottom: 25px">1.2</div>
+                        <div class="graph-legend-line-h" style="bottom: 75px; width:120px"></div>
+                        <div class="graph-legend-left" style="bottom: 40px">1.3</div>
+                        <div class="graph-legend-line-h" style="bottom: 90px; width:120px"></div>
+                        <div class="graph-legend-left" style="bottom: 55px">1.4</div>
+                        <div class="graph-legend-line-h" style="bottom: 105px; width:120px"></div>
+                        <div class="graph-legend-left" style="bottom: 70px">1.5</div>
+                        <div class="graph-legend-line-h" style="bottom: 120px; width:120px"></div>
+                        <div class="graph-legend-left" style="bottom: 85px">1.6</div>
+                        <div class="graph-legend-line-h" style="bottom: 135px; width:120px"></div>
+                        <div class="graph-legend-left" style="bottom: 100px">1.7</div>
+                        <div class="graph-legend-line-h" style="bottom: 150px; width:120px"></div>
+                        <div class="graph-legend-left" style="bottom: 115px">1.8</div>
+                        <div class="graph-legend-left" style="bottom: 130px">1.9</div>
+
+                        <div style="opacity: 50%; position: absolute; bottom: 0px; width:120px; height: 15px; background-color: #ffa"></div>
+                        <div style="opacity: 50%; position: absolute; bottom: 15px; width:120px; height: 15px; background-color: #ffa"></div>
+                        <div style="opacity: 50%; position: absolute; bottom: 30px; width:120px; height: 15px; background-color: #ffa"></div>
+                        <div style="opacity: 50%; position: absolute; bottom: 45px; width:120px; height: 15px; background-color: #aff"></div>
+                        <div style="opacity: 50%; position: absolute; bottom: 60px; width:120px; height: 15px; background-color: #afa"></div>
+                        <div style="opacity: 50%; position: absolute; bottom: 75px; width:120px; height: 22.5px; background-color: #fcf"></div>
+                        <div style="opacity: 50%; position: absolute; bottom: 97.5px; width:120px; height: 22.5px; background-color: #fcc"></div>
+                        <div style="opacity: 50%; position: absolute; bottom: 120px; width:120px; height: 30px; background-color: #faa"></div>
+
+                        <div style="position: absolute; right: -255px; bottom: 15px; width:130px; height: 15px; font-size: 12px">вега/вкорінення</div>
+                        <div style="position: absolute; right: -255px; bottom: 45px; width:130px; height: 15px; font-size: 12px">пізня вега</div>
+                        <div style="position: absolute; right: -255px; bottom: 60px; width:130px; height: 15px; font-size: 12px">м'який генератив</div>
+                        <div style="position: absolute; right: -255px; bottom: 79px; width:130px; height: 15px; font-size: 12px">цвітіння</div>
+                        <div style="position: absolute; right: -255px; bottom: 100px; width:130px; height: 15px; font-size: 12px">зав'язь/налив</div>
+                        <div style="position: absolute; right: -255px; bottom: 125px; width:130px; height: 15px; font-size: 12px">агресивний генератив</div>
+                    </div>
+					<div style="position: absolute; bottom: 0; left: 20px; clear: both; z-index: 10">
+<!--						<div class="graph-color-n-pale" style="position:absolute; bottom:0; width: 30px; height: 20px;"></div>-->
+						<div class="graph-bar graph-color-n-active" id="graphs_k_camg_bar_value" style="height: 0;"></div>
+						<div class="graph-bar-value graph-bar-value-white" id="graphs_k_camg_value" style="bottom: 0">0</div>
+						<div class="graph-bar-legend" style="width: 110px">K:Ca+Mg</div>
+					</div>
+				</div>
 			</div>
 		</div>
 
@@ -663,23 +713,23 @@
 			"atomic": 95.94,
 			"class": "micro"
 		},
-		"Cl": {
-			"name": "Cl",
-			"unit": "umol",
-			"atomic": 35.453,
-			"ionic": -1,
-			"class": "micro",
-			"is_hidden": true
-		}
+		// "Cl": {
+		// 	"name": "Cl",
+		// 	"unit": "umol",
+		// 	"atomic": 35.453,
+		// 	"ionic": -1,
+		// 	"class": "micro",
+		// 	"is_hidden": true
+		// }
 	};
 	var fertilizers = {
 		// Yara
 		"YaraLivaCalcinit": { "name": "YaraLiva Calcinit", "manufacturer": "Yara", "market": "UA,RU", "desc": "", "Ca": 19, "NO3": 14.4, "NH4": 1.1, "N": 15.5, "img": "images/yara/calcinit.jpg" },
-		"YaraLivaNitrabor": { "name": "YaraLiva Nitrabor", "manufacturer": "Yara", "market": "UA,RU", "desc": "", "Ca": 18.3, "NO3": 14.1, "NH4": 1.3, "B": 0.3, "img": "images/yara/nitrabor.jpg" },
+		// "YaraLivaNitrabor": { "name": "YaraLiva Nitrabor", "manufacturer": "Yara", "market": "UA,RU", "desc": "", "Ca": 18.3, "NO3": 14.1, "NH4": 1.3, "B": 0.3, "img": "images/yara/nitrabor.jpg" },
 		"YaraTeraKristaSop": { "name": "YaraTera KRISTA SOP", "manufacturer": "Yara", "market": "UA,RU", "desc": "", "K2O": 52, "S": 18, "img": "images/yara/sop.jpg" },
 		"YaraTeraKristaMgS": { "name": "YaraTera KRISTA MgS", "manufacturer": "Yara", "market": "UA,RU", "desc": "", "MgO": 16, "SO3": 32, "img": "images/yara/mgs.jpg" },
 		"YaraTeraKristaMKP": { "name": "YaraTera KRISTA MKP", "manufacturer": "Yara", "market": "UA,RU", "desc": "", "P2O5": 52, "K2O": 34, "img": "images/yara/mkp.jpg" },
-		"YaraTeraKristaMAP": { "name": "YaraTera KRISTA MAP", "manufacturer": "Yara", "market": "UA,RU", "desc": "", "NH4": 12, "P2O5": 61, "img": "images/yara/map.jpg" },
+		// "YaraTeraKristaMAP": { "name": "YaraTera KRISTA MAP", "manufacturer": "Yara", "market": "UA,RU", "desc": "", "NH4": 12, "P2O5": 61, "img": "images/yara/map.jpg" },
 		"YaraTeraKristaMAG": { "name": "YaraTera KRISTA MAG", "manufacturer": "Yara", "market": "UA,RU", "desc": "", "NO3": 11, "Mg": 9, "img": "images/yara/mag.jpg" },
 		"YaraTeraKristaK": { "name": "YaraTera KRISTA K", "manufacturer": "Yara", "market": "UA,RU", "desc": "", "NO3": 13.5, "K2O": 45.5, "img": "images/yara/k.jpg" },
 		"YaraTeraKristalonPlus": { "name": "YaraTera Kristalon SPECIAL PLUS 20-20-20 +micro", "manufacturer": "Yara", "market": "UA,RU", "desc": "", "NO3": 3.1, "NH4": 2.3, "NH2": 14.6, "K2O": 20, "P2O5": 20, "S": 1.6, "B": 0.025, "Cu": 0.01, "Fe": 0.07, "Mn": 0.04, "Mo": 0.004, "Zn": 0.025, "img": "images/yara/kristalon-20-20-20.jpg" },
@@ -695,7 +745,7 @@
 		"YaraTeraKristaSpecial": { "name": "YaraTera Kristalon SPECIAL 18-18-18 +3MgO +micro", "manufacturer": "Yara", "market": "UA,RU", "desc": "", "ph01": 4.3, "NO3": 4.9, "NH3": 3.3, "NH2": 9.8, "P2O5": 18, "K2O": 18, "MgO": 3, "SO3": 5, "B": 0.025, "Cu": 0.01, "Fe": 0.07, "Mn": 0.04, "Mo": 0.004, "Zn": 0.025, "img": "images/yara/kristalon-18-18-18.jpg" },
 		"YaraTeraRexolinD12": { "name": "YaraTera Rexolin D12", "manufacturer": "Yara", "market": "UA,RU", "desc": "", "Fe": 11.6, "img": "images/yara/rexolin-d12.jpg" },
 		// "YaraTeraRexolinQ40": { "name": "YaraTera Rexolin Q40", "manufacturer": "Yara", "market": "UA,RU", "desc": "", "Fe": 6, "img": "https://s.brandmaster.com/s/40WeJ2" },
-		"YaraTeraRexolinABC": { "name": "YaraTera Rexolin ABC", "manufacturer": "Yara", "market": "UA,RU", "desc": "", "Mg": 4, "B": 0.5, "Cu": 1.5, "Fe": 4, "Mn": 1.8, "Mo": 0.1, "Zn": 1.5, "img": "images/yara/rexolin-abc.jpg" },
+		"YaraTeraRexolinABC": { "name": "YaraTera Rexolin ABC", "manufacturer": "Yara", "market": "UA,RU", "desc": "", "Mg": 4, "B": 0.5, "Cu": 1.5, "Fe": 4, "Mn": 1.85, "Mo": 0.1, "Zn": 1.5, "img": "images/yara/rexolin-abc.jpg" },
 		"YaraTeraRexolinAPN": { "name": "YaraTera Rexolin APN", "manufacturer": "Yara", "market": "UA,RU", "desc": "", "B": 0.9, "Cu": 0.2, "Fe": 4, "Mn": 5.6, "Mo": 0.2, "Zn": 1.1, "img": "images/yara/rexolin-apn.jpg" },
 		// "YaraVitaRexolinZn15": { "name": "YaraVita Rexolin Zn15", "manufacturer": "Yara", "market": "UA,RU", "desc": "", "Zn": 14.8, "img": "https://s.brandmaster.com/s/qrZEx2" },
 		// "YaraVitaRexolinMn13": { "name": "YaraVita Rexolin Mn13", "manufacturer": "Yara", "market": "UA,RU", "desc": "", "Mn": 12.8, "img": "https://s.brandmaster.com/s/qrZEx2" },
@@ -726,9 +776,12 @@
 		// "ProfiEDTAMn": { "name": "Partner EDTA Mn 13%", "manufacturer": "Partner", "market": "UA,RU", "desc": "", "Mn": 13, "img": "images/partner/mn.jpg"},
 		// "ProfiEDTACu": { "name": "Partner EDTA Cu 15%", "manufacturer": "Partner", "market": "UA,RU", "desc": "", "Cu": 15, "img": "images/partner/cu.jpg"},
 		// Прості солі
-		// "BoricAcid": { "name": "Борна кислота, ЧДА, 17.5%", "manufacturer": "OEM", "market": "UA,RU", "desc": "", "B": 17.484, "img": "images/salts/boric-acid.jpeg"},
-		// "CaNO3BuyMarkiA":{ name: "Кальцій азотнокислий (буйський марка А)", "Ca": 19.3, "NO3": 14.9, "NH4": 0.7, "img": "https://buyskie.ru/fertilizer/nitrat-calsiya/i/nitratcalsiya-a.jpg" },
-		// "CaCl2":{name: "Кальцій хлористий (CaCl2 безводний), Ч", desc: "",	"Ca": 36.1115, "Cl": 63.8885, "solublity25": 100,"img":"https://opt6.ru/upload/iblock/8f1/8f15beb978c75a26ec48d043a6f2d765.jpg"},
+		"BoricAcid": { "name": "Борна кислота, ЧДА, 17.5%", "manufacturer": "OEM", "market": "UA,RU", "desc": "", "B": 17.484, "img": "images/salts/boric-acid.jpeg"},
+		"BoricAcidMother10g1l": { "name": "Борна кислота, ЧДА, 17.5%, 10г на 1л", "manufacturer": "OEM", "market": "UA,RU", "desc": "", "B": 0.175, "img": "images/salts/boric-acid.jpeg"},
+		"Mo10g1l": { "name": "Амоній молібдат ((NH₄)₂Mo₇O₂₄·4H₂O), 10г на 1л", "manufacturer": "OEM", "market": "UA,RU", "desc": "", "Mo": 0.577, "img": "images/salts/boric-acid.jpeg"},
+		"PartnerMn": { "name": "Partner Mn EDTA", "manufacturer": "OEM", "market": "UA,RU", "desc": "", "Mn": 13, "img": "images/salts/boric-acid.jpeg"},
+		"PartnerZn": { "name": "Partner Zn EDTA", "manufacturer": "OEM", "market": "UA,RU", "desc": "", "Zn": 15, "img": "images/salts/boric-acid.jpeg"},
+		"CaNOTetra": { "name": "Кальцій нітрат тетрагідрат (Ca(NO3)2⋅4H2O)", "manufacturer": "OEM", "market": "UA,RU", "desc": "", "N": 11.9, "NO3": 11.9, "Ca": 16.97, "img": "images/salts/boric-acid.jpeg"},
 		// "KNO3Clear":{ name: "Калій азотнокислий (KNO3), Ч", "K": 38.672, "NO3": 13.854, "solublity25": 36,"img":"https://im0-tub-ru.yandex.net/i?id=4cc72e2571c5bbdb420510461fc8e8d1&n=13" },
 		// "KNO3Buy":{ name: "Калій азотнокислий (KNO3), буйський", desc: "", "K": 38.1869, "NO3": 13.6, "solublity25": 36, "img": "https://avatars.mds.yandex.net/get-mpic/4304169/img_id8871408001341111596.jpeg/13hq" },
 		// "KH2PO4Clear":{ name: "Калій фосфорнокислий 2-замещенный (монофосфат, KH2PO4), Ч", "K": 28.731, "P": 22.761 },
@@ -736,7 +789,6 @@
 		// "MgSO47H2OClear":{ name: "Магний сірчанокислий семиводний (MgSO4*7H2O), Ч", "Mg": 9.861, "S": 13.01, "solublity25": 70 },
 		// "MgNO326H2OClear":	{ name: "Магний азотнокислий шестиводний (Mg(NO3)2*6H2O), Ч", "Mg": 9.49, "NO3": 10.925, "solublity25": 70 },
 		// "NH4NO3Clear":{ name: "Амоній азотнокислий (NH4NO3), Ч", "NO3": 17.499, "NH4": 17.499, "solublity25": 70 },
-		// "NH42SO4Buy":{ name: "Амоній сірчанокислий ((NH4)2SO4, буйський)", "NH4": 21, "S": 24,"img":"https://pr-agro.ru/wp-content/uploads/2021/02/pr-agro-sulfat-ammoniya-50kg.jpg" },
 	};
 
 	/**
@@ -1022,6 +1074,7 @@
 		let kcamgKnorm = k / kcamgMin;
 		let kcamgCanorm = ca / kcamgMin;
 		let kcamgMgnorm = mg / kcamgMin;
+		let kCaPlusMg = k / (ca + mg);
 
 		calculations['__totals']['ec'] = 0.095 * (calculations['__totals']["NH4"] / 14.0067 + 2 * calculations['__totals']["Ca"] / 40.078 + 2 * calculations['__totals']["Mg"] / 24.305 + calculations['__totals']["K"] / 39.0983) + 0.19;
 		calculations['__totals']['npk'] = nNorm.toFixed(2) + ':' + pNorm.toFixed(2) + ':' + kNorm.toFixed(2);
@@ -1033,6 +1086,7 @@
 		calculations['__totals']['kcamg']['k'] = kcamgKnorm.toFixed(2);
 		calculations['__totals']['kcamg']['ca'] = kcamgCanorm.toFixed(2);
 		calculations['__totals']['kcamg']['mg'] = kcamgMgnorm.toFixed(2);
+		calculations['__totals']['kCaPlusMg'] = kCaPlusMg.toFixed(3);
 	}
 
 	function _calculateDeviations() {
@@ -1235,6 +1289,8 @@
 		let ec_scale = 0.02;
 		let kcamg_scale = 0.05;
 		let nk_scale = 0.023333333;
+		let k_camg_scale = 0.00655555;
+		let k_camg_start = 0.9;
 
 		let ec = calculations['__totals']['ec'].toFixed(2);
 		let kcamg_k = calculations['__totals']['kcamg']['k'];
@@ -1242,6 +1298,8 @@
 		let kcamg_mg = calculations['__totals']['kcamg']['mg'];
 		let nk_n = calculations['__totals']['nk']['n'];
 		let nk_k = calculations['__totals']['nk']['k'];
+		let k_camg = calculations['__totals']['kCaPlusMg'];
+		// let k_camg = 1;
 
 		if (isCartEmpty()) ec = '';
 		if (isNaN(ec) || !isFinite(ec)) ec_scale = 0;
@@ -1250,6 +1308,7 @@
 		if (isNaN(kcamg_mg) || !isFinite(kcamg_mg)) kcamg_mg = 0;
 		if (isNaN(nk_n) || !isFinite(nk_n)) nk_n = 0;
 		if (isNaN(nk_k) || !isFinite(nk_k)) nk_k = 0;
+		if (isNaN(k_camg) || !isFinite(k_camg)) k_camg = 0;
 
 		_updateGraphsBar('graphs_ec_value', 'graphs_ec_bar_value', ec, ec_scale, 0, 2);
 		_updateGraphsBar('graphs_kcamg_k_value', 'graphs_kcamg_k_bar_value', kcamg_k, kcamg_scale, 20);
@@ -1257,16 +1316,21 @@
 		_updateGraphsBar('graphs_kcamg_mg_value', 'graphs_kcamg_mg_bar_value', kcamg_mg, kcamg_scale, 20);
 		_updateGraphsBar('graphs_nk_n_value', 'graphs_nk_n_bar_value', nk_n, nk_scale, 20);
 		_updateGraphsBar('graphs_nk_k_value', 'graphs_nk_k_bar_value', nk_k, nk_scale, 20);
+		_updateGraphsBar('graphs_k_camg_value', 'graphs_k_camg_bar_value', k_camg, k_camg_scale, 20, 2, k_camg_start);
 	}
 
-	function _updateGraphsBar(value_name, bar_name, value, scale, offset, decimals) {
+	function _updateGraphsBar(value_name, bar_name, value, scale, offset, decimals, start_point) {
 		let max_bar_height = 140;
 		if (decimals === undefined) decimals = 1;
+		if (start_point === undefined) start_point = 0;
 		if (value !== '') value = roundDecimals(value, decimals).toFixed(decimals);
+		let height_value = roundDecimals(value, decimals).toFixed(decimals) - start_point;
+		let height_calculated = Math.min(roundDecimals(height_value / scale), max_bar_height);
+		// if (height_calculated < 15.0) { getEl(value_name).style.color = 'red'; console.log(value_name + ' ' + height_calculated); }
 
 		getEl(value_name).innerText = value;
-		getEl(value_name).style.bottom = (Math.min(roundDecimals(value / scale), max_bar_height) - offset) + 'px';
-		getEl(bar_name).style.height = Math.min(roundDecimals(value / scale), max_bar_height) + 'px';
+		getEl(value_name).style.bottom = (height_calculated - offset) + 'px';
+		getEl(bar_name).style.height = height_calculated + 'px';
 	}
 
 	function _updateDeviationsBar() {
@@ -1321,8 +1385,8 @@
 				<div class="divTableCell micro">${template.Cu || 0}</div>
 				<div class="divTableCell micro">${template.Mn || 0}</div>
 				<div class="divTableCell micro">${template.Mo || 0}</div>
-				<div class="divTableCell micro">${template.Cl || 0}</div>
 			`;
+			//<div class="divTableCell micro">${template.Cl || 0}</div>
 	}
 
 
